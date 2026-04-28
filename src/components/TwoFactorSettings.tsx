@@ -225,52 +225,51 @@ const TwoFactorSettings: React.FC<TwoFactorSettingsProps> = ({ isEnabled, onStat
 
       {/* 2FA Setup Modal */}
       {showSetup && setupData && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg p-6 max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-            <h3 className="text-lg font-semibold text-slate-900 mb-4">Set up Two-Factor Authentication</h3>
-            
-            <div className="space-y-6">
-              {/* Step 1: QR Code */}
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3">
+          <div className="bg-white rounded-lg p-4 max-w-4xl w-full max-h-[95vh] overflow-hidden flex flex-col">
+            <h3 className="text-base font-semibold text-slate-900 mb-3">Set up Two-Factor Authentication</h3>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 flex-1 min-h-0 overflow-auto">
+              {/* Left column: Step 1 - QR Code */}
               <div>
-                <h4 className="text-md font-medium text-slate-900 mb-3 flex items-center">
-                  <QrCodeIcon className="w-5 h-5 mr-2" />
+                <h4 className="text-sm font-medium text-slate-900 mb-2 flex items-center">
+                  <QrCodeIcon className="w-4 h-4 mr-2" />
                   Step 1: Scan QR Code
                 </h4>
-                <p className="text-sm text-slate-600 mb-3">
-                  Scan this QR code with your authenticator app (Google Authenticator, Authy, etc.):
+                <p className="text-xs text-slate-600 mb-2">
+                  Scan with your authenticator app (Google Authenticator, Authy, etc.):
                 </p>
-                <div className="flex justify-center p-4 bg-white rounded-lg border-2 border-slate-300">
+                <div className="flex justify-center p-2 bg-white rounded-lg border-2 border-slate-300">
                   {setupData.qr_code_uri ? (
-                    <QRCodeSVG 
+                    <QRCodeSVG
                       value={setupData.qr_code_uri}
-                      size={200}
+                      size={150}
                       level="H"
                       includeMargin={true}
                     />
                   ) : setupData.secret ? (
-                    <QRCodeSVG 
+                    <QRCodeSVG
                       value={`otpauth://totp/BrokerEye:${setupData.secret}?secret=${setupData.secret}&issuer=BrokerEye`}
-                      size={200}
+                      size={150}
                       level="H"
                       includeMargin={true}
                     />
                   ) : (
-                    <div className="w-48 h-48 flex items-center justify-center bg-blue-100 rounded">
-                      <p className="text-sm text-slate-500">QR Code not available</p>
+                    <div className="w-36 h-36 flex items-center justify-center bg-blue-100 rounded">
+                      <p className="text-xs text-slate-500">QR Code not available</p>
                     </div>
                   )}
                 </div>
-                <div className="mt-2 p-3 bg-white rounded-lg">
-                  <p className="text-xs text-slate-500 mb-2">Can't scan? Manual entry key:</p>
+                <div className="mt-2 p-2 bg-white rounded-lg">
+                  <p className="text-[11px] text-slate-500 mb-1">Can't scan? Manual entry key:</p>
                   <div className="flex items-center justify-between gap-2">
-                    <code className="bg-white px-3 py-2 rounded font-mono text-sm border border-slate-300 flex-1 break-all">{setupData.secret}</code>
+                    <code className="bg-white px-2 py-1.5 rounded font-mono text-xs border border-slate-300 flex-1 break-all">{setupData.secret}</code>
                     <button
                       type="button"
                       onClick={(e) => {
                         e.preventDefault()
                         e.stopPropagation()
                         try {
-                          // Fallback method for copying text
                           const textArea = document.createElement('textarea')
                           textArea.value = setupData.secret
                           textArea.style.position = 'fixed'
@@ -285,88 +284,89 @@ const TwoFactorSettings: React.FC<TwoFactorSettingsProps> = ({ isEnabled, onStat
                           toast.error('Failed to copy to clipboard')
                         }
                       }}
-                      className="flex items-center gap-1 px-3 py-2 text-xs text-slate-700 hover:text-slate-700 hover:bg-white rounded transition-colors whitespace-nowrap border border-slate-300"
+                      className="flex items-center gap-1 px-2 py-1.5 text-xs text-slate-700 hover:bg-white rounded transition-colors whitespace-nowrap border border-slate-300"
                       title="Copy manual entry key"
                     >
-                      <DocumentDuplicateIcon className="w-4 h-4" />
+                      <DocumentDuplicateIcon className="w-3.5 h-3.5" />
                       Copy
                     </button>
                   </div>
                 </div>
               </div>
-              
-              {/* Step 2: Backup Codes */}
-              <div>
-                <h4 className="text-md font-medium text-slate-900 mb-3 flex items-center">
-                  <KeyIcon className="w-5 h-5 mr-2" />
-                  Step 2: Save Backup Codes
-                </h4>
-                <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-3">
-                  <p className="text-sm text-yellow-800 mb-2 font-medium">
-                    ⚠️ Important: Save these backup codes in a safe place!
-                  </p>
-                  <p className="text-xs text-yellow-700">
-                    You can use these codes to access your account if you lose your phone.
-                  </p>
-                </div>
-                <div className="bg-white rounded-lg p-4 relative">
-                  <div className="grid grid-cols-2 gap-2 text-sm font-mono">
-                    {setupData.backup_codes.map((code, index) => (
-                      <div key={index} className="bg-white p-2 rounded text-center border">
-                        {code}
-                      </div>
-                    ))}
+
+              {/* Right column: Step 2 + Step 3 */}
+              <div className="flex flex-col gap-3">
+                <div>
+                  <h4 className="text-sm font-medium text-slate-900 mb-2 flex items-center">
+                    <KeyIcon className="w-4 h-4 mr-2" />
+                    Step 2: Save Backup Codes
+                  </h4>
+                  <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-2 mb-2">
+                    <p className="text-xs text-yellow-800 font-medium">
+                      ⚠️ Save these backup codes in a safe place!
+                    </p>
+                    <p className="text-[11px] text-yellow-700">
+                      Use them to access your account if you lose your phone.
+                    </p>
                   </div>
-                  <button
-                    onClick={copyBackupCodes}
-                    className="absolute top-2 right-2 p-2 text-slate-500 hover:text-slate-700 transition-colors"
-                    title="Copy backup codes"
-                  >
-                    <DocumentDuplicateIcon className="w-4 h-4" />
-                  </button>
+                  <div className="bg-white rounded-lg p-2 relative border border-slate-200">
+                    <div className="grid grid-cols-2 gap-1.5 text-xs font-mono">
+                      {setupData.backup_codes.map((code, index) => (
+                        <div key={index} className="bg-white p-1.5 rounded text-center border">
+                          {code}
+                        </div>
+                      ))}
+                    </div>
+                    <button
+                      onClick={copyBackupCodes}
+                      className="absolute top-1 right-1 p-1.5 text-slate-500 hover:text-slate-700 transition-colors"
+                      title="Copy backup codes"
+                    >
+                      <DocumentDuplicateIcon className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
+                  {copiedCodes && (
+                    <p className="text-[11px] text-yellow-600 mt-1">✓ Backup codes copied to clipboard!</p>
+                  )}
                 </div>
-                {copiedCodes && (
-                  <p className="text-xs text-yellow-600 mt-1">✓ Backup codes copied to clipboard!</p>
-                )}
+
+                <div>
+                  <h4 className="text-sm font-medium text-slate-900 mb-1.5">
+                    Step 3: Enter Verification Code
+                  </h4>
+                  <p className="text-xs text-slate-600 mb-2">
+                    Enter the 6-digit code from your authenticator app:
+                  </p>
+                  <input
+                    type="text"
+                    placeholder="000000"
+                    value={verificationCode}
+                    onChange={(e) => setVerificationCode(e.target.value.replace(/\D/g, '').slice(0, 6))}
+                    className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-400 focus:border-slate-300 text-center text-base tracking-widest font-mono"
+                    maxLength={6}
+                  />
+                </div>
               </div>
-              
-              {/* Step 3: Verification */}
-              <div>
-                <h4 className="text-md font-medium text-slate-900 mb-3">
-                  Step 3: Enter Verification Code
-                </h4>
-                <p className="text-sm text-slate-600 mb-3">
-                  Enter the 6-digit code from your authenticator app:
-                </p>
-                <input
-                  type="text"
-                  placeholder="000000"
-                  value={verificationCode}
-                  onChange={(e) => setVerificationCode(e.target.value.replace(/\D/g, '').slice(0, 6))}
-                  className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-400 focus:border-slate-300 text-center text-lg tracking-widest font-mono"
-                  maxLength={6}
-                />
-              </div>
-              
-              <div className="flex items-center space-x-3 pt-4">
-                <button
-                  onClick={handleEnable2FA}
-                  disabled={verificationCode.length !== 6 || enable2FAMutation.isLoading}
-                  className="flex-1 px-4 py-2 bg-white border border-slate-300 text-slate-700 rounded-lg hover:bg-white transition-colors disabled:opacity-50 text-sm font-medium"
-                >
-                  {enable2FAMutation.isLoading ? 'Enabling...' : 'Enable 2FA'}
-                </button>
-                <button
-                  onClick={() => {
-                    setShowSetup(false)
-                    setSetupData(null)
-                    setVerificationCode('')
-                  }}
-                  className="px-4 py-2 text-slate-600 hover:text-slate-800 transition-colors text-sm font-medium"
-                >
-                  Cancel
-                </button>
-              </div>
+            </div>
+
+            <div className="flex items-center space-x-3 pt-3 mt-2 border-t border-slate-200">
+              <button
+                onClick={handleEnable2FA}
+                disabled={verificationCode.length !== 6 || enable2FAMutation.isLoading}
+                className="flex-1 px-4 py-2 bg-white border border-slate-300 text-slate-700 rounded-lg hover:bg-white transition-colors disabled:opacity-50 text-sm font-medium"
+              >
+                {enable2FAMutation.isLoading ? 'Enabling...' : 'Enable 2FA'}
+              </button>
+              <button
+                onClick={() => {
+                  setShowSetup(false)
+                  setSetupData(null)
+                  setVerificationCode('')
+                }}
+                className="px-4 py-2 text-slate-600 hover:text-slate-800 transition-colors text-sm font-medium"
+              >
+                Cancel
+              </button>
             </div>
           </div>
         </div>

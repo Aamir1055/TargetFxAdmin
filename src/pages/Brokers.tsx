@@ -410,7 +410,6 @@ const Brokers: React.FC = () => {
                   <div className="w-9 h-9 rounded-xl bg-blue-700 flex items-center justify-center">
                     <BuildingOfficeIcon className="w-5 h-5 text-white" />
                   </div>
-                  <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-yellow-500 border-2 border-white rounded-full"></div>
                 </div>
                 <div>
                   <h1 className={`text-lg font-bold transition-colors duration-300 ${
