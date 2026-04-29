@@ -254,7 +254,7 @@ const AuditLogs: React.FC = () => {
               <div className="flex flex-wrap items-center gap-2 lg:flex-nowrap">
                 <button
                   onClick={() => setShowFilters(!showFilters)}
-                  className="px-3 py-2 bg-white border border-slate-300 text-slate-700 rounded-lg transition-all duration-200 flex items-center gap-1.5 whitespace-nowrap shadow-sm font-medium text-sm group hover:bg-slate-50"
+                  className="px-3 py-2 bg-white border border-slate-300 text-slate-700 rounded-lg transition-all duration-200 flex items-center gap-1.5 whitespace-nowrap shadow-sm text-sm group hover:bg-slate-50"
                 >
                   <FunnelIcon className="w-4 h-4" />
                   <span>Filters</span>
@@ -265,7 +265,7 @@ const AuditLogs: React.FC = () => {
                       const dropdown = document.getElementById('export-dropdown')
                       dropdown?.classList.toggle('hidden')
                     }}
-                    className="px-3 py-2 bg-white border border-slate-300 text-slate-700 rounded-lg transition-all duration-200 flex items-center gap-1.5 whitespace-nowrap shadow-sm font-medium text-sm group hover:bg-slate-50"
+                    className="px-3 py-2 bg-white border border-slate-300 text-slate-700 rounded-lg transition-all duration-200 flex items-center gap-1.5 whitespace-nowrap shadow-sm text-sm group hover:bg-slate-50"
                   >
                     <ArrowDownTrayIcon className="w-4 h-4" />
                     <span>Export</span>
@@ -290,7 +290,7 @@ const AuditLogs: React.FC = () => {
                 </div>
                 <button
                   onClick={handleRefresh}
-                  className="px-3 py-2 bg-white border border-slate-300 text-slate-700 rounded-lg transition-all duration-200 flex items-center gap-1.5 whitespace-nowrap shadow-sm font-medium text-sm group hover:bg-slate-50"
+                  className="px-3 py-2 bg-white border border-slate-300 text-slate-700 rounded-lg transition-all duration-200 flex items-center gap-1.5 whitespace-nowrap shadow-sm text-sm group hover:bg-slate-50"
                   title="Refresh audit logs"
                 >
                   <ArrowPathIcon className="w-4 h-4 group-hover:rotate-180 transition-transform duration-300" />

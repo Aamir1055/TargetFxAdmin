@@ -138,10 +138,10 @@ const BrokerTable: React.FC<BrokerTableProps> = ({
               <tr>
                 <th 
                   onClick={() => onSort('full_name')}
-                  className={`px-2 py-1.5 text-center text-xs font-medium uppercase tracking-wide cursor-pointer transition-colors ${
+                  className={`px-2 py-1.5 text-center text-xs font-bold uppercase tracking-wide cursor-pointer transition-colors ${
                     false 
                       ? 'text-slate-300 hover:bg-blue-600/50' 
-                      : 'text-slate-600 hover:bg-slate-50'
+                      : 'text-slate-700 hover:bg-slate-50'
                   }`}
                   title="Click to sort"
                 >
@@ -154,10 +154,10 @@ const BrokerTable: React.FC<BrokerTableProps> = ({
                 </th>
                 <th 
                   onClick={() => onSort('email')}
-                  className={`px-2 py-1.5 text-center text-xs font-medium uppercase tracking-wide cursor-pointer transition-colors ${
+                  className={`px-2 py-1.5 text-center text-xs font-bold uppercase tracking-wide cursor-pointer transition-colors ${
                     false 
                       ? 'text-slate-300 hover:bg-blue-600/50' 
-                      : 'text-slate-600 hover:bg-slate-50'
+                      : 'text-slate-700 hover:bg-slate-50'
                   }`}
                   title="Click to sort"
                 >
@@ -168,15 +168,15 @@ const BrokerTable: React.FC<BrokerTableProps> = ({
                     )}
                   </div>
                 </th>
-                <th className={`px-2 py-1.5 text-center text-xs font-medium uppercase tracking-wide ${
+                <th className={`px-2 py-1.5 text-center text-xs font-bold uppercase tracking-wide ${
                   'text-slate-600'
                 }`}>Phone</th>
                 <th 
                   onClick={() => onSort('is_active')}
-                  className={`px-2 py-1.5 text-center text-xs font-medium uppercase tracking-wide cursor-pointer transition-colors ${
+                  className={`px-2 py-1.5 text-center text-xs font-bold uppercase tracking-wide cursor-pointer transition-colors ${
                     false 
                       ? 'text-slate-300 hover:bg-blue-600/50' 
-                      : 'text-slate-600 hover:bg-slate-50'
+                      : 'text-slate-700 hover:bg-slate-50'
                   }`}
                   title="Click to sort"
                 >
@@ -189,10 +189,10 @@ const BrokerTable: React.FC<BrokerTableProps> = ({
                 </th>
                 <th 
                   onClick={() => onSort('clients_count')}
-                  className={`px-2 py-1.5 text-center text-xs font-medium uppercase tracking-wide cursor-pointer transition-colors ${
+                  className={`px-2 py-1.5 text-center text-xs font-bold uppercase tracking-wide cursor-pointer transition-colors ${
                     false 
                       ? 'text-slate-300 hover:bg-blue-600/50' 
-                      : 'text-slate-600 hover:bg-slate-50'
+                      : 'text-slate-700 hover:bg-slate-50'
                   }`}
                   title="Click to sort"
                 >
@@ -205,10 +205,10 @@ const BrokerTable: React.FC<BrokerTableProps> = ({
                 </th>
                 <th 
                   onClick={() => onSort('rights_count')}
-                  className={`px-2 py-1.5 text-center text-xs font-medium uppercase tracking-wide cursor-pointer transition-colors ${
+                  className={`px-2 py-1.5 text-center text-xs font-bold uppercase tracking-wide cursor-pointer transition-colors ${
                     false 
                       ? 'text-slate-300 hover:bg-blue-600/50' 
-                      : 'text-slate-600 hover:bg-slate-50'
+                      : 'text-slate-700 hover:bg-slate-50'
                   }`}
                   title="Click to sort"
                 >
@@ -219,7 +219,7 @@ const BrokerTable: React.FC<BrokerTableProps> = ({
                     )}
                   </div>
                 </th>
-                <th className={`px-2 py-1.5 text-center text-xs font-medium uppercase tracking-wide ${
+                <th className={`px-2 py-1.5 text-center text-xs font-bold uppercase tracking-wide ${
                   'text-slate-600'
                 }`}>Actions</th>
               </tr>
@@ -230,7 +230,7 @@ const BrokerTable: React.FC<BrokerTableProps> = ({
                   false ? 'hover:bg-blue-700/50' : 'hover:bg-white'
                 }`}>
                   <td className="px-2 py-2 text-center">
-                    <p className="text-xs font-semibold text-slate-900">
+                    <p className="text-sm font-medium text-slate-900">
                       {broker.username || 'No Username'}
                     </p>
                   </td>

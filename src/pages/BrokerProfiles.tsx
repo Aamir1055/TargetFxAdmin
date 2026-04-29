@@ -196,7 +196,7 @@ const BrokerProfiles: React.FC = () => {
               <div className="flex flex-wrap items-center gap-2 lg:flex-nowrap">
                 <button
                   onClick={handleRefresh}
-                  className="px-3 py-2 bg-white border border-slate-300 text-slate-700 rounded-lg transition-all duration-200 flex items-center gap-1.5 whitespace-nowrap shadow-sm font-medium text-sm group hover:bg-slate-50"
+                  className="px-3 py-2 bg-white border border-slate-300 text-slate-700 rounded-lg transition-all duration-200 flex items-center gap-1.5 whitespace-nowrap shadow-sm text-sm group hover:bg-slate-50"
                   title="Refresh profiles list"
                 >
                   <ArrowPathIcon className="w-4 h-4 group-hover:rotate-180 transition-transform duration-300" />
@@ -288,7 +288,7 @@ const BrokerProfiles: React.FC = () => {
                       <tr>
                         <th 
                           onClick={() => handleSort('name')}
-                          className="pl-8 pr-3 py-2 text-left text-[10px] font-semibold text-slate-500 uppercase tracking-wider cursor-pointer hover:bg-slate-50 transition-colors"
+                          className="pl-8 pr-3 py-2 text-left text-xs font-bold text-slate-700 uppercase tracking-wider cursor-pointer hover:bg-slate-50 transition-colors"
                           title="Click to sort"
                         >
                           <div className="flex items-center space-x-1">
@@ -298,12 +298,12 @@ const BrokerProfiles: React.FC = () => {
                             )}
                           </div>
                         </th>
-                        <th className="px-3 py-2 text-left text-[10px] font-semibold text-slate-500 uppercase tracking-wider">
+                        <th className="px-3 py-2 text-left text-xs font-bold text-slate-700 uppercase tracking-wider">
                           Description
                         </th>
                         <th 
                           onClick={() => handleSort('rightsCount')}
-                          className="px-3 py-2 text-center text-[10px] font-semibold text-slate-500 uppercase tracking-wider cursor-pointer hover:bg-slate-50 transition-colors"
+                          className="px-3 py-2 text-center text-xs font-bold text-slate-700 uppercase tracking-wider cursor-pointer hover:bg-slate-50 transition-colors"
                           title="Click to sort"
                         >
                           <div className="flex items-center justify-center space-x-1">
@@ -315,7 +315,7 @@ const BrokerProfiles: React.FC = () => {
                         </th>
                         <th 
                           onClick={() => handleSort('createdAt')}
-                          className="px-3 py-2 text-center text-[10px] font-semibold text-slate-500 uppercase tracking-wider cursor-pointer hover:bg-slate-50 transition-colors"
+                          className="px-3 py-2 text-center text-xs font-bold text-slate-700 uppercase tracking-wider cursor-pointer hover:bg-slate-50 transition-colors"
                           title="Click to sort"
                         >
                           <div className="flex items-center justify-center space-x-1">
@@ -325,7 +325,7 @@ const BrokerProfiles: React.FC = () => {
                             )}
                           </div>
                         </th>
-                        <th className="px-3 py-2 text-center text-[10px] font-semibold text-slate-500 uppercase tracking-wider">
+                        <th className="px-3 py-2 text-center text-xs font-bold text-slate-700 uppercase tracking-wider">
                           Actions
                         </th>
                       </tr>
@@ -346,14 +346,14 @@ const BrokerProfiles: React.FC = () => {
                             className="hover:bg-white transition-colors duration-150"
                           >
                             <td className="pl-8 pr-3 py-2 text-left">
-                              <div className="text-xs font-medium text-slate-900">{profile.name}</div>
+                              <div className="text-sm font-medium text-slate-900">{profile.name}</div>
                             </td>
                             <td className="px-3 py-2 text-left">
                               <div className="text-xs text-slate-700">{profile.description || 'No description'}</div>
                             </td>
                             <td className="px-3 py-2 text-center">
                               <span className="px-2 py-0.5 bg-blue-100 text-slate-700 rounded-full text-[10px] font-medium">
-                                {profile.rightsCount} rights
+                                {profile.rightsCount}
                               </span>
                             </td>
                             <td className="px-3 py-2 text-center">

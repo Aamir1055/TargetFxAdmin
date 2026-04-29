@@ -111,7 +111,7 @@ const UserTable: React.FC<UserTableProps> = ({
             }`}>
               <th 
                 onClick={() => onSort?.('username')}
-                className={`px-3 py-2 text-center text-[10px] font-bold uppercase tracking-wider transition-colors ${
+                className={`px-4 py-3 text-center text-xs font-bold uppercase tracking-wider transition-colors ${
                   'text-slate-700'
                 } ${onSort ? 'cursor-pointer hover:bg-opacity-50 transition-colors' : ''}`}
                 title={onSort ? 'Click to sort' : ''}
@@ -125,7 +125,7 @@ const UserTable: React.FC<UserTableProps> = ({
               </th>
               <th 
                 onClick={() => onSort?.('email')}
-                className={`px-3 py-2 text-center text-[10px] font-bold uppercase tracking-wider transition-colors ${
+                className={`px-4 py-3 text-center text-xs font-bold uppercase tracking-wider transition-colors ${
                   'text-slate-700'
                 } ${onSort ? 'cursor-pointer hover:bg-opacity-50 transition-colors' : ''}`}
                 title={onSort ? 'Click to sort' : ''}
@@ -137,12 +137,12 @@ const UserTable: React.FC<UserTableProps> = ({
                   )}
                 </div>
               </th>
-              <th className={`px-3 py-2 text-center text-[10px] font-bold uppercase tracking-wider ${
+              <th className={`px-4 py-3 text-center text-xs font-bold uppercase tracking-wider ${
                 'text-slate-700'
               }`}>Roles</th>
               <th 
                 onClick={() => onSort?.('is_active')}
-                className={`px-3 py-2 text-center text-[10px] font-bold uppercase tracking-wider transition-colors ${
+                className={`px-4 py-3 text-center text-xs font-bold uppercase tracking-wider transition-colors ${
                   'text-slate-700'
                 } ${onSort ? 'cursor-pointer hover:bg-opacity-50 transition-colors' : ''}`}
                 title={onSort ? 'Click to sort' : ''}
@@ -156,7 +156,7 @@ const UserTable: React.FC<UserTableProps> = ({
               </th>
               <th 
                 onClick={() => onSort?.('created_at')}
-                className={`px-3 py-2 text-center text-[10px] font-bold uppercase tracking-wider transition-colors ${
+                className={`px-4 py-3 text-center text-xs font-bold uppercase tracking-wider transition-colors ${
                   'text-slate-700'
                 } ${onSort ? 'cursor-pointer hover:bg-opacity-50 transition-colors' : ''}`}
                 title={onSort ? 'Click to sort' : ''}
@@ -168,7 +168,7 @@ const UserTable: React.FC<UserTableProps> = ({
                   )}
                 </div>
               </th>
-              <th className={`px-3 py-2 text-center text-[10px] font-bold uppercase tracking-wider ${
+              <th className={`px-4 py-3 text-center text-xs font-bold uppercase tracking-wider ${
                 'text-slate-700'
               }`}>Actions</th>
             </tr>
@@ -182,8 +182,8 @@ const UserTable: React.FC<UserTableProps> = ({
               <tr key={user.id} className="group">
                 <td className="px-3 py-2 whitespace-nowrap text-center">
                   <div className="flex flex-col items-center">
-                    <div className="text-xs font-semibold text-slate-800">{user.username}</div>
-                    <div className="text-[10px] text-slate-500">@{user.username.toLowerCase().replace(/\s+/g, '')}</div>
+                    <div className="text-sm font-medium text-slate-900">{user.username}</div>
+                    <div className="text-xs text-slate-500">@{user.username.toLowerCase().replace(/\s+/g, '')}</div>
                   </div>
                 </td>
                 <td className="px-3 py-2 whitespace-nowrap text-center">

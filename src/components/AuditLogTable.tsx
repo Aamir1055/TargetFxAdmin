@@ -83,7 +83,7 @@ const AuditLogTable: React.FC<AuditLogTableProps> = ({ logs, isLoading, onSort, 
             <tr>
               <th
                 onClick={() => onSort?.('id')}
-                className="px-3 py-3 text-center text-[11px] font-semibold text-slate-600 uppercase tracking-wider cursor-pointer hover:bg-slate-100 transition-colors"
+                className="px-3 py-3 text-center text-xs font-bold text-slate-700 uppercase tracking-wider cursor-pointer hover:bg-slate-100 transition-colors"
                 title="Click to sort"
               >
                 <div className="flex items-center justify-center space-x-1">
@@ -95,7 +95,7 @@ const AuditLogTable: React.FC<AuditLogTableProps> = ({ logs, isLoading, onSort, 
               </th>
               <th
                 onClick={() => onSort?.('username')}
-                className="px-3 py-3 text-left text-[11px] font-semibold text-slate-600 uppercase tracking-wider cursor-pointer hover:bg-slate-100 transition-colors"
+                className="px-3 py-3 text-left text-xs font-bold text-slate-700 uppercase tracking-wider cursor-pointer hover:bg-slate-100 transition-colors"
                 title="Click to sort"
               >
                 <div className="flex items-center space-x-1">
@@ -107,7 +107,7 @@ const AuditLogTable: React.FC<AuditLogTableProps> = ({ logs, isLoading, onSort, 
               </th>
               <th
                 onClick={() => onSort?.('action')}
-                className="px-3 py-3 text-center text-[11px] font-semibold text-slate-600 uppercase tracking-wider cursor-pointer hover:bg-slate-100 transition-colors"
+                className="px-3 py-3 text-center text-xs font-bold text-slate-700 uppercase tracking-wider cursor-pointer hover:bg-slate-100 transition-colors"
                 title="Click to sort"
               >
                 <div className="flex items-center justify-center space-x-1">
@@ -119,7 +119,7 @@ const AuditLogTable: React.FC<AuditLogTableProps> = ({ logs, isLoading, onSort, 
               </th>
               <th
                 onClick={() => onSort?.('table_name')}
-                className="px-3 py-3 text-left text-[11px] font-semibold text-slate-600 uppercase tracking-wider cursor-pointer hover:bg-slate-100 transition-colors"
+                className="px-3 py-3 text-left text-xs font-bold text-slate-700 uppercase tracking-wider cursor-pointer hover:bg-slate-100 transition-colors"
                 title="Click to sort"
               >
                 <div className="flex items-center space-x-1">
@@ -131,10 +131,10 @@ const AuditLogTable: React.FC<AuditLogTableProps> = ({ logs, isLoading, onSort, 
               </th>
               <th
                 onClick={() => onSort?.('record_id')}
-                className="px-3 py-3 text-center text-[11px] font-semibold text-slate-600 uppercase tracking-wider cursor-pointer hover:bg-slate-100 transition-colors"
+                className="px-3 py-3 text-center text-xs font-bold text-slate-700 uppercase tracking-wider cursor-pointer hover:bg-slate-100 transition-colors"
                 title="Click to sort"
               >
-                <div className="flex items-center justify-center space-x-1">
+                <div className="flex items-center justify-center space-x-1 whitespace-nowrap">
                   <span>Record ID</span>
                   {currentSort?.field === 'record_id' && (
                     <span className="text-slate-600">{currentSort.order === 'asc' ? '↑' : '↓'}</span>
@@ -143,7 +143,7 @@ const AuditLogTable: React.FC<AuditLogTableProps> = ({ logs, isLoading, onSort, 
               </th>
               <th
                 onClick={() => onSort?.('ip_address')}
-                className="px-3 py-3 text-left text-[11px] font-semibold text-slate-600 uppercase tracking-wider cursor-pointer hover:bg-slate-100 transition-colors"
+                className="px-3 py-3 text-left text-xs font-bold text-slate-700 uppercase tracking-wider cursor-pointer hover:bg-slate-100 transition-colors"
                 title="Click to sort"
               >
                 <div className="flex items-center space-x-1">
@@ -155,7 +155,7 @@ const AuditLogTable: React.FC<AuditLogTableProps> = ({ logs, isLoading, onSort, 
               </th>
               <th
                 onClick={() => onSort?.('created_at')}
-                className="px-3 py-3 text-left text-[11px] font-semibold text-slate-600 uppercase tracking-wider cursor-pointer hover:bg-slate-100 transition-colors"
+                className="px-3 py-3 text-left text-xs font-bold text-slate-700 uppercase tracking-wider cursor-pointer hover:bg-slate-100 transition-colors"
                 title="Click to sort"
               >
                 <div className="flex items-center space-x-1">
@@ -165,7 +165,7 @@ const AuditLogTable: React.FC<AuditLogTableProps> = ({ logs, isLoading, onSort, 
                   )}
                 </div>
               </th>
-              <th className="px-3 py-3 text-left text-[11px] font-semibold text-slate-600 uppercase tracking-wider">
+              <th className="px-3 py-3 text-left text-xs font-bold text-slate-700 uppercase tracking-wider">
                 Changes
               </th>
             </tr>

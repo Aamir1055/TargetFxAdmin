@@ -110,10 +110,10 @@ const RoleTable: React.FC<RoleTableProps> = ({
             <tr>
               <th 
                 onClick={() => handleSort('name')}
-                className={`px-4 py-3 text-center text-xs font-semibold uppercase tracking-wider cursor-pointer transition-colors ${
+                className={`px-4 py-3 text-center text-xs font-bold uppercase tracking-wider cursor-pointer transition-colors ${
                   false 
                     ? 'text-slate-300 hover:bg-blue-600/50' 
-                    : 'text-slate-500 hover:bg-slate-50'
+                    : 'text-slate-700 hover:bg-slate-50'
                 }`}
                 title="Click to sort"
               >
@@ -126,10 +126,10 @@ const RoleTable: React.FC<RoleTableProps> = ({
               </th>
               <th 
                 onClick={() => handleSort('description')}
-                className={`px-4 py-3 text-center text-xs font-semibold uppercase tracking-wider cursor-pointer transition-colors ${
+                className={`px-4 py-3 text-center text-xs font-bold uppercase tracking-wider cursor-pointer transition-colors ${
                   false 
                     ? 'text-slate-300 hover:bg-blue-600/50' 
-                    : 'text-slate-500 hover:bg-slate-50'
+                    : 'text-slate-700 hover:bg-slate-50'
                 }`}
                 title="Click to sort"
               >
@@ -142,10 +142,10 @@ const RoleTable: React.FC<RoleTableProps> = ({
               </th>
               <th 
                 onClick={() => handleSort('permissions')}
-                className={`px-4 py-3 text-center text-xs font-semibold uppercase tracking-wider cursor-pointer transition-colors ${
+                className={`px-4 py-3 text-center text-xs font-bold uppercase tracking-wider cursor-pointer transition-colors ${
                   false 
                     ? 'text-slate-300 hover:bg-blue-600/50' 
-                    : 'text-slate-500 hover:bg-slate-50'
+                    : 'text-slate-700 hover:bg-slate-50'
                 }`}
                 title="Click to sort"
               >
@@ -156,11 +156,11 @@ const RoleTable: React.FC<RoleTableProps> = ({
                   )}
                 </div>
               </th>
-              <th className={`px-4 py-3 text-center text-xs font-semibold uppercase tracking-wider ${
-                'text-slate-500'
+              <th className={`px-4 py-3 text-center text-xs font-bold uppercase tracking-wider ${
+                'text-slate-700'
               }`}>Status</th>
-              <th className={`px-4 py-3 text-center text-xs font-semibold uppercase tracking-wider ${
-                'text-slate-500'
+              <th className={`px-4 py-3 text-center text-xs font-bold uppercase tracking-wider ${
+                'text-slate-700'
               }`}>Actions</th>
             </tr>
           </thead>

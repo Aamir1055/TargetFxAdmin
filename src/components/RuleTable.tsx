@@ -169,25 +169,25 @@ const RuleTable: React.FC<RuleTableProps> = ({
         <table className="min-w-full divide-y divide-slate-200">
           <thead className="bg-white">
             <tr>
-              <th className="px-4 py-3 text-left text-xs font-semibold text-slate-700 uppercase tracking-wider">
+              <th className="px-4 py-3 text-left text-xs font-bold text-slate-700 uppercase tracking-wider">
                 Rule Name
               </th>
-              <th className="px-4 py-3 text-center text-xs font-semibold text-slate-700 uppercase tracking-wider">
+              <th className="px-4 py-3 text-center text-xs font-bold text-slate-700 uppercase tracking-wider">
                 Code
               </th>
-              <th className="px-4 py-3 text-left text-xs font-semibold text-slate-700 uppercase tracking-wider">
+              <th className="px-4 py-3 text-left text-xs font-bold text-slate-700 uppercase tracking-wider">
                 Description
               </th>
-              <th className="px-4 py-3 text-center text-xs font-semibold text-slate-700 uppercase tracking-wider">
+              <th className="px-4 py-3 text-center text-xs font-bold text-slate-700 uppercase tracking-wider">
                 MT5 Field
               </th>
-              <th className="px-4 py-3 text-center text-xs font-semibold text-slate-700 uppercase tracking-wider">
+              <th className="px-4 py-3 text-center text-xs font-bold text-slate-700 uppercase tracking-wider">
                 Value Template
               </th>
-              <th className="px-4 py-3 text-center text-xs font-semibold text-slate-700 uppercase tracking-wider">
+              <th className="px-4 py-3 text-center text-xs font-bold text-slate-700 uppercase tracking-wider">
                 Status
               </th>
-              <th className="px-4 py-3 text-center text-xs font-semibold text-slate-700 uppercase tracking-wider">
+              <th className="px-4 py-3 text-center text-xs font-bold text-slate-700 uppercase tracking-wider">
                 Actions
               </th>
             </tr>
