@@ -40,28 +40,52 @@ const Settings: React.FC = () => {
         </PageHeaderShell>
 
         {/* User Info Card */}
-        <div className="mx-2 bg-white shadow rounded-lg p-6">
-          <div className="flex items-center">
-            <div className="flex-shrink-0 h-12 w-12">
-              <div className="h-12 w-12 rounded-full bg-blue-100 border border-slate-300 flex items-center justify-center">
-                <span className="text-lg font-medium text-slate-500">
-                  {currentUser?.username?.charAt(0).toUpperCase() || 'U'}
-                </span>
+        <div className="mx-2 relative overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+          <div className="relative px-6 py-5">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+              <div className="flex items-center gap-4">
+                {/* Avatar */}
+                <div className="relative">
+                  <div className="h-16 w-16 rounded-full bg-gradient-to-br from-blue-100 to-indigo-100 ring-4 ring-white shadow-md flex items-center justify-center">
+                    <span className="text-2xl font-bold bg-gradient-to-r from-blue-700 to-indigo-700 bg-clip-text text-transparent">
+                      {currentUser?.username?.charAt(0).toUpperCase() || 'U'}
+                    </span>
+                  </div>
+                  <span
+                    className={`absolute -bottom-0.5 -right-0.5 h-4 w-4 rounded-full ring-2 ring-white ${
+                      currentUser?.is_active ? 'bg-emerald-500' : 'bg-slate-400'
+                    }`}
+                    title={currentUser?.is_active ? 'Active' : 'Inactive'}
+                  />
+                </div>
+
+                {/* Identity */}
+                <div>
+                  <h3 className="text-xl font-bold text-slate-900 leading-tight">
+                    {currentUser?.username}
+                  </h3>
+                  <p className="text-sm text-slate-500 mt-0.5">{currentUser?.email}</p>
+                </div>
               </div>
-            </div>
-            <div className="ml-4">
-              <h3 className="text-lg font-medium text-slate-900">{currentUser?.username}</h3>
-              <p className="text-sm text-slate-500">{currentUser?.email}</p>
-              <div className="mt-1 flex items-center space-x-2">
-                <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                  currentUser?.is_active 
-                    ? 'bg-blue-100 text-slate-700' 
-                    : 'bg-red-100 text-red-800'
-                }`}>
+
+              {/* Badges */}
+              <div className="flex flex-wrap items-center gap-2">
+                <span
+                  className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold ${
+                    currentUser?.is_active
+                      ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
+                      : 'bg-red-50 text-red-700 border border-red-200'
+                  }`}
+                >
+                  <span className={`h-1.5 w-1.5 rounded-full ${currentUser?.is_active ? 'bg-emerald-500' : 'bg-red-500'}`} />
                   {currentUser?.is_active ? 'Active' : 'Inactive'}
                 </span>
                 {currentUser?.roles?.map((role: string) => (
-                  <span key={role} className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-slate-800">
+                  <span
+                    key={role}
+                    className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold bg-blue-50 text-blue-700 border border-blue-200 capitalize"
+                  >
+                    <ShieldCheckIcon className="w-3.5 h-3.5" />
                     {role}
                   </span>
                 ))}
