@@ -10,7 +10,6 @@ import {
 import {
   ChartBarIcon,
   UserGroupIcon,
-  DocumentTextIcon,
   Squares2X2Icon,
 } from '@heroicons/react/24/outline'
 import {
@@ -18,6 +17,9 @@ import {
   BuildingOfficeIcon,
   ClipboardDocumentListIcon,
   Cog6ToothIcon,
+  IdentificationIcon,
+  AdjustmentsHorizontalIcon,
+  CommandLineIcon,
 } from '@heroicons/react/24/solid'
 import { cn } from '../lib/utils'
 import { useAuth } from '../contexts/AuthContext'
@@ -42,11 +44,11 @@ const allNavigation: NavigationItem[] = [
   { name: 'Users', href: '/users', icon: UserGroupIcon, module: MODULES.USERS },
   { name: 'Roles', href: '/roles', icon: ShieldCheckIcon, module: MODULES.ROLES },
   { name: 'Brokers', href: '/brokers', icon: BuildingOfficeIcon, module: MODULES.BROKERS },
-  { name: 'Broker Profiles', href: '/broker-profiles', icon: DocumentTextIcon, module: MODULES.BROKER_PROFILES },
+  { name: 'Broker Profiles', href: '/broker-profiles', icon: IdentificationIcon, module: MODULES.BROKER_PROFILES },
   // { name: 'Groups', href: '/groups', icon: Layers, module: MODULES.GROUPS },
-  { name: 'Rules', href: '/rules', icon: DocumentTextIcon, module: MODULES.RULES },
+  { name: 'Rules', href: '/rules', icon: AdjustmentsHorizontalIcon, module: MODULES.RULES },
   { name: 'Audit Logs', href: '/audit-logs', icon: ClipboardDocumentListIcon, module: MODULES.AUDIT_LOGS },
-  { name: 'Logs', href: '/logs', icon: DocumentTextIcon, module: MODULES.LOGS },
+  { name: 'Logs', href: '/logs', icon: CommandLineIcon, module: MODULES.LOGS },
   { name: 'API Metrics', href: '/api-metrics', icon: ChartBarIcon },
   { name: 'Settings', href: '/settings', icon: Cog6ToothIcon, module: MODULES.PROFILE },
 ]
@@ -103,20 +105,20 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
           {/* Header */}
           <div className={cn(
             "border-b border-slate-200 bg-white flex-shrink-0 h-[88px]",
-            isCollapsed ? "flex items-center justify-center px-3" : "px-6 flex items-center"
+            isCollapsed ? "flex items-center justify-center px-3" : "px-3 flex items-center"
           )}>
             {isCollapsed ? (
               <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-blue-700 shadow-lg flex-shrink-0">
                 <Sparkles className="h-5 w-5 text-white" />
               </div>
             ) : (
-              <div className="flex items-center space-x-3 min-w-0">
-                <div className="w-10 h-10 bg-blue-700 rounded-xl flex items-center justify-center shadow-lg flex-shrink-0">
-                  <Sparkles className="w-6 h-6 text-white" />
+              <div className="flex items-center gap-2.5 min-w-0">
+                <div className="w-9 h-9 bg-blue-700 rounded-lg flex items-center justify-center shadow-md flex-shrink-0">
+                  <Sparkles className="w-5 h-5 text-white" />
                 </div>
-                <div className="min-w-0">
-                  <h1 className="text-xl font-bold text-slate-900 whitespace-nowrap">
-                    UserAdmin
+                <div className="min-w-0 leading-tight">
+                  <h1 className="text-base font-bold text-slate-900 whitespace-nowrap tracking-tight">
+                    Broker Eye Admin
                   </h1>
                   <p className="text-xs text-slate-500 font-medium whitespace-nowrap">Management Pro</p>
                 </div>

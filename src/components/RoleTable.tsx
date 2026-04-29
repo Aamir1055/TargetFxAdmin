@@ -191,33 +191,27 @@ const RoleTable: React.FC<RoleTableProps> = ({
                   </span>
                 </td>
                 <td className="px-4 py-3 text-center">
-                  <div className="flex items-center justify-center space-x-1">
+                  <div className="flex items-center justify-center gap-1">
                     <PermissionGate module={MODULES.ROLES} action="edit">
                       <button 
                         onClick={() => onEdit(role)}
-                        className="group relative p-2.5 text-slate-400 hover:text-white rounded-xl hover:bg-blue-700 transition-all duration-200 hover:shadow-lg hover:scale-105"
+                        className="group/btn relative p-1.5 text-slate-400 hover:text-white rounded-lg bg-blue-100 hover:bg-blue-700 transition-all duration-200 hover:shadow-md hover:shadow-blue-500/50 hover:scale-110"
                         title="Edit role"
                       >
-                        <svg className="w-4 h-4 transition-transform group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-3.5 h-3.5 transition-transform group-hover/btn:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                         </svg>
-                        <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-blue-900 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
-                          Edit
-                        </div>
                       </button>
                     </PermissionGate>
                     <PermissionGate module={MODULES.ROLES} action="delete">
                       <button 
                         onClick={() => onDelete(role.id)}
-                        className="group relative p-2.5 text-slate-400 hover:text-white rounded-xl hover:bg-gradient-to-r hover:from-red-500 hover:to-red-600 transition-all duration-200 hover:shadow-lg hover:scale-105"
+                        className="group/btn relative p-1.5 text-slate-400 hover:text-white rounded-lg bg-blue-100 hover:bg-gradient-to-r hover:from-red-500 hover:to-red-600 transition-all duration-200 hover:shadow-md hover:shadow-red-500/50 hover:scale-110"
                         title="Delete role"
                       >
-                        <svg className="w-4 h-4 transition-transform group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-3.5 h-3.5 transition-transform group-hover/btn:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                         </svg>
-                        <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-blue-900 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
-                          Delete
-                        </div>
                       </button>
                     </PermissionGate>
                   </div>

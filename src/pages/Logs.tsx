@@ -6,7 +6,7 @@ import {
   ChevronRightIcon,
   ArrowPathIcon
 } from '@heroicons/react/24/outline'
-import { DocumentTextIcon } from '@heroicons/react/24/solid'
+import { CommandLineIcon } from '@heroicons/react/24/solid'
 import { logsService, LogContentResponse } from '../services/logsService'
 import toast from 'react-hot-toast'
 import PageHeaderShell from '../components/layout/PageHeaderShell'
@@ -187,7 +187,7 @@ const Logs: React.FC = () => {
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-xl bg-blue-700 flex items-center justify-center">
-                  <DocumentTextIcon className="w-5 h-5 text-white" />
+                  <CommandLineIcon className="w-5 h-5 text-white" />
                 </div>
                 <div>
                   <h1 className="text-xl font-bold text-slate-900">System Logs</h1>
