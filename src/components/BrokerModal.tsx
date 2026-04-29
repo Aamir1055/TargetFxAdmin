@@ -1474,7 +1474,7 @@ const BrokerModal: React.FC<BrokerModalProps> = ({
                           
                           {/* Match All Condition Toggle */}
                           <div className="flex items-center space-x-2">
-                            <span className="text-xs font-medium text-slate-700">Match All</span>
+                            <span className="text-xs font-medium text-slate-700">Match All Mappings</span>
                             <button
                               type="button"
                               onClick={() => handleMatchAllConditionToggle()}
@@ -1603,7 +1603,7 @@ const BrokerModal: React.FC<BrokerModalProps> = ({
                                   <svg className="w-3.5 h-3.5 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
                                   </svg>
-                                  {broker?.id ? 'Add Mapping' : 'Add to Pending'}
+                                  {broker?.id ? 'Add Mapping' : 'Add'}
                                 </>
                               )}
                             </button>
@@ -1612,7 +1612,7 @@ const BrokerModal: React.FC<BrokerModalProps> = ({
                           <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mb-3">
                             <div>
                               <label className="block text-xs font-medium text-slate-700 mb-1">
-                                Field Name *
+                                Field *
                               </label>
                               <select
                                 name="field_name"
@@ -1663,7 +1663,7 @@ const BrokerModal: React.FC<BrokerModalProps> = ({
 
                             <div>
                               <label className="block text-xs font-medium text-slate-700 mb-1">
-                                Operator Type
+                                Type
                               </label>
                               <select
                                 name="operator_type"
@@ -1704,7 +1704,7 @@ const BrokerModal: React.FC<BrokerModalProps> = ({
 
                             <div className="relative">
                               <label className="block text-xs font-medium text-slate-700 mb-1">
-                                Field Value *
+                                Value *
                               </label>
                               <input
                                 type="text"
