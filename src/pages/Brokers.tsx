@@ -426,8 +426,34 @@ const Brokers: React.FC = () => {
                   </p>
                 </div>
               </div>
-              
-              <div />
+
+              {/* Header controls: filters + refresh + add */}
+              <div className="flex flex-wrap items-center gap-2 lg:flex-nowrap">
+                <button
+                  onClick={() => setShowFilters(!showFilters)}
+                  className="px-3 py-2 bg-white border border-slate-300 text-slate-700 rounded-lg transition-all duration-200 flex items-center gap-2 whitespace-nowrap text-sm shadow-sm hover:bg-slate-50"
+                >
+                  <FunnelIcon className="w-4 h-4" />
+                  <span>Filters</span>
+                </button>
+                <button
+                  onClick={handleRefresh}
+                  className="px-3 py-2 bg-white border border-slate-300 text-slate-700 rounded-lg transition-all duration-200 flex items-center gap-1.5 whitespace-nowrap shadow-sm font-medium text-sm group hover:bg-slate-50"
+                  title="Refresh brokers list"
+                >
+                  <ArrowPathIcon className="w-4 h-4 group-hover:rotate-180 transition-transform duration-300" />
+                  <span>Refresh</span>
+                </button>
+                <PermissionGate module={MODULES.BROKERS} action="create">
+                  <button
+                    onClick={handleCreateBroker}
+                    className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-all duration-200 flex items-center gap-1.5 whitespace-nowrap shadow-sm font-semibold text-sm group"
+                  >
+                    <PlusIcon className="w-4 h-4 group-hover:rotate-90 transition-transform duration-300" />
+                    <span>Add Broker</span>
+                  </button>
+                </PermissionGate>
+              </div>
             </div>
       </PageHeaderShell>
 
@@ -667,15 +693,15 @@ const Brokers: React.FC = () => {
             onPageChange={setCurrentPage}
             topContent={
               <div className="flex flex-col gap-3">
-                {/* Row 1: search + actions */}
-                <div className="flex flex-wrap items-center gap-2">
-                  <div className="relative flex-1 min-w-[220px]">
+                {/* Row: search (left) + show entries + pagination (right) */}
+                <div className="flex items-center justify-between gap-3">
+                  <div className="relative w-full sm:w-72">
                     <input
                       type="text"
                       placeholder="Search by name, email, username..."
                       value={searchTerm}
                       onChange={(e) => handleSearch(e.target.value)}
-                      className="w-full pl-9 pr-9 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-400 text-sm bg-white text-slate-900 placeholder-slate-400"
+                      className="w-full pl-9 pr-9 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm bg-white text-slate-900 placeholder-slate-400"
                     />
                     <MagnifyingGlassIcon className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400" />
                     {searchTerm && (
@@ -687,33 +713,7 @@ const Brokers: React.FC = () => {
                       </button>
                     )}
                   </div>
-                  <button
-                    onClick={() => setShowFilters(!showFilters)}
-                    className="px-3 py-2 bg-white border border-slate-300 text-slate-700 rounded-lg transition-all duration-200 flex items-center gap-2 whitespace-nowrap text-sm shadow-sm hover:bg-white"
-                  >
-                    <FunnelIcon className="w-4 h-4" />
-                    <span>Filters</span>
-                  </button>
-                  <button
-                    onClick={handleRefresh}
-                    className="px-3 py-2 bg-white border border-slate-300 text-slate-700 rounded-lg transition-all duration-200 flex items-center gap-1.5 whitespace-nowrap shadow-sm font-semibold text-xs group hover:bg-white"
-                    title="Refresh brokers list"
-                  >
-                    <ArrowPathIcon className="w-4 h-4 group-hover:rotate-180 transition-transform duration-300" />
-                    <span>Refresh</span>
-                  </button>
-                  <PermissionGate module={MODULES.BROKERS} action="create">
-                    <button
-                      onClick={handleCreateBroker}
-                      className="px-4 py-2 bg-white border border-slate-300 text-slate-700 rounded-lg transition-all duration-200 flex items-center gap-1.5 whitespace-nowrap shadow-sm font-semibold text-xs group hover:bg-white"
-                    >
-                      <PlusIcon className="w-4 h-4 group-hover:rotate-90 transition-transform duration-300" />
-                      <span>Add Broker</span>
-                    </button>
-                  </PermissionGate>
-                </div>
-                {/* Row 2: show entries + page info + pagination */}
-                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3 ml-auto">
                   <div className="flex items-center gap-1.5">
                     <span className="text-xs text-slate-600">Show</span>
                     <select
@@ -728,9 +728,6 @@ const Brokers: React.FC = () => {
                       ))}
                     </select>
                     <span className="text-xs text-slate-600">entries</span>
-                  </div>
-                  <div className="text-xs text-slate-700">
-                    Showing {brokersData?.pagination.total === 0 ? 0 : ((currentPage - 1) * pageSize) + 1} to {Math.min(currentPage * pageSize, brokersData?.pagination.total || 0)} of {brokersData?.pagination.total || 0} results
                   </div>
                   {brokersData?.pagination && brokersData.pagination.pages > 1 && (
                     <div className="flex items-center gap-1.5">
@@ -755,6 +752,7 @@ const Brokers: React.FC = () => {
                       </button>
                     </div>
                   )}
+                  </div>
                 </div>
               </div>
             }

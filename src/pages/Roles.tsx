@@ -214,7 +214,7 @@ const Roles: React.FC = () => {
     }`}>
       {/* Compact Header with Glass Effect */}
       <PageHeaderShell>
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
               <div className="flex items-center gap-3">
                 <div className="relative">
                   <div className="w-9 h-9 rounded-xl bg-blue-700 flex items-center justify-center">
@@ -237,7 +237,25 @@ const Roles: React.FC = () => {
                 </div>
               </div>
               
-              <div />
+              <div className="flex flex-wrap items-center gap-2 lg:flex-nowrap">
+                <button
+                  onClick={handleRefresh}
+                  className="px-3 py-2 bg-white border border-slate-300 text-slate-700 rounded-lg transition-all duration-200 flex items-center gap-1.5 whitespace-nowrap shadow-sm font-medium text-sm group hover:bg-slate-50"
+                  title="Refresh roles list"
+                >
+                  <ArrowPathIcon className="w-4 h-4 group-hover:rotate-180 transition-transform duration-300" />
+                  <span>Refresh</span>
+                </button>
+                <PermissionGate module={MODULES.ROLES} action="create">
+                  <button
+                    onClick={handleCreateRole}
+                    className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-all duration-200 flex items-center gap-1.5 whitespace-nowrap shadow-sm font-semibold text-sm group"
+                  >
+                    <PlusIcon className="w-4 h-4 group-hover:rotate-90 transition-transform duration-300" />
+                    <span>Create Role</span>
+                  </button>
+                </PermissionGate>
+              </div>
             </div>
       </PageHeaderShell>
 
@@ -254,39 +272,19 @@ const Roles: React.FC = () => {
             onEdit={handleEditRole}
             onDelete={handleDeleteRole}
             topContent={
-              <div className="flex flex-col gap-3">
-                {/* Row 1: search + actions */}
-                <div className="flex flex-wrap items-center gap-2">
-                  <div className="relative flex-1 min-w-[220px]">
-                    <input
-                      type="text"
-                      placeholder="Search roles..."
-                      value={searchTerm}
-                      onChange={(e) => setSearchTerm(e.target.value)}
-                      className="w-full pl-9 pr-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-400 text-sm bg-white text-slate-900 placeholder-slate-400"
-                    />
-                    <MagnifyingGlassIcon className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
-                  </div>
-                  <button
-                    onClick={handleRefresh}
-                    className="px-3 py-2 bg-white border border-slate-300 text-slate-700 rounded-lg transition-all duration-200 flex items-center gap-1.5 shadow-sm font-semibold text-xs group whitespace-nowrap hover:bg-white"
-                    title="Refresh roles list"
-                  >
-                    <ArrowPathIcon className="w-4 h-4 group-hover:rotate-180 transition-transform duration-300" />
-                    <span>Refresh</span>
-                  </button>
-                  <PermissionGate module={MODULES.ROLES} action="create">
-                    <button
-                      onClick={handleCreateRole}
-                      className="px-4 py-2 bg-white border border-slate-300 text-slate-700 rounded-lg transition-all duration-200 flex items-center gap-1.5 shadow-sm font-semibold text-xs group whitespace-nowrap hover:bg-white"
-                    >
-                      <PlusIcon className="w-4 h-4 group-hover:rotate-90 transition-transform duration-300" />
-                      <span>Create Role</span>
-                    </button>
-                  </PermissionGate>
+              <div className="flex items-center justify-between gap-3">
+                <div className="relative w-full sm:w-72">
+                  <input
+                    type="text"
+                    placeholder="Search roles..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="w-full pl-9 pr-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm bg-white text-slate-900 placeholder-slate-400"
+                  />
+                  <MagnifyingGlassIcon className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
                 </div>
-                {/* Row 2: show entries + page info + pagination */}
-                <div className="flex items-center justify-between">
+
+                <div className="flex items-center gap-3 ml-auto">
                   <div className="flex items-center gap-1.5">
                     <span className="text-xs text-slate-600">Show</span>
                     <select
@@ -299,9 +297,6 @@ const Roles: React.FC = () => {
                       ))}
                     </select>
                     <span className="text-xs text-slate-600">entries</span>
-                  </div>
-                  <div className="text-xs text-slate-700">
-                    Showing {totalItems === 0 ? 0 : startIndex + 1} to {Math.min(endIndex, totalItems)} of {totalItems} results
                   </div>
                   {totalPages > 1 && (
                     <div className="flex items-center gap-1.5">

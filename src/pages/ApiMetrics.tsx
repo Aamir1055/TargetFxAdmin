@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { metricsService } from '../services/metricsService'
 import type { ApiMetric } from '../types/metrics'
 import toast from 'react-hot-toast'
-import { ArrowUpIcon, ArrowDownIcon, ClockIcon, ServerIcon, ArrowsRightLeftIcon, ChartBarIcon } from '@heroicons/react/24/outline'
+import { ArrowUpIcon, ArrowDownIcon, ClockIcon, ServerIcon, ArrowUpTrayIcon, ArrowDownTrayIcon, ChartBarIcon, BoltIcon } from '@heroicons/react/24/outline'
 import { motion } from 'framer-motion'
 import PageHeaderShell from '../components/layout/PageHeaderShell'
 
@@ -147,9 +147,9 @@ export default function ApiMetrics() {
               <p className="mt-3 text-xs text-slate-500">Total requests processed</p>
             </div>
             <div className="flex flex-col items-end gap-3">
-              <span className="rounded-full bg-white px-2.5 py-1 text-[10px] font-semibold text-slate-700 ring-1 ring-blue-200">Total</span>
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white text-slate-600 ring-1 ring-blue-200 transition-transform duration-300 group-hover:scale-105">
-                <ServerIcon className="h-5 w-5 text-slate-600" />
+              <span className="rounded-full bg-slate-100 px-2.5 py-1 text-[10px] font-semibold text-slate-600">Total</span>
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50 text-blue-600 transition-transform duration-300 group-hover:scale-105">
+                <BoltIcon className="h-5 w-5" />
               </div>
             </div>
           </div>
@@ -170,9 +170,9 @@ export default function ApiMetrics() {
               <p className="mt-3 text-xs text-slate-500">Average across all endpoints</p>
             </div>
             <div className="flex flex-col items-end gap-3">
-              <span className="rounded-full bg-white px-2.5 py-1 text-[10px] font-semibold text-slate-700 ring-1 ring-blue-200">Avg</span>
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white text-slate-600 ring-1 ring-blue-200 transition-transform duration-300 group-hover:scale-105">
-                <ClockIcon className="h-5 w-5 text-slate-600" />
+              <span className="rounded-full bg-slate-100 px-2.5 py-1 text-[10px] font-semibold text-slate-600">Avg</span>
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-amber-50 text-amber-600 transition-transform duration-300 group-hover:scale-105">
+                <ClockIcon className="h-5 w-5" />
               </div>
             </div>
           </div>
@@ -193,9 +193,9 @@ export default function ApiMetrics() {
               <p className="mt-3 text-xs text-slate-500">Total outbound traffic</p>
             </div>
             <div className="flex flex-col items-end gap-3">
-              <span className="rounded-full bg-white px-2.5 py-1 text-[10px] font-semibold text-slate-700 ring-1 ring-blue-200">Sent</span>
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-white text-slate-600 ring-1 ring-blue-200 transition-transform duration-300 group-hover:scale-105">
-                <ArrowsRightLeftIcon className="h-5 w-5 rotate-90 text-slate-600" />
+              <span className="rounded-full bg-slate-100 px-2.5 py-1 text-[10px] font-semibold text-slate-600">Sent</span>
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600 transition-transform duration-300 group-hover:scale-105">
+                <ArrowUpTrayIcon className="h-5 w-5" />
               </div>
             </div>
           </div>
@@ -216,9 +216,9 @@ export default function ApiMetrics() {
               <p className="mt-3 text-xs text-slate-500">Total inbound traffic</p>
             </div>
             <div className="flex flex-col items-end gap-3">
-              <span className="rounded-full bg-blue-100 px-2.5 py-1 text-[10px] font-semibold text-slate-700 ring-1 ring-blue-200">Received</span>
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-100 text-slate-700 ring-1 ring-blue-200 transition-transform duration-300 group-hover:scale-105">
-                <ArrowsRightLeftIcon className="h-5 w-5 -rotate-90 text-slate-700" />
+              <span className="rounded-full bg-slate-100 px-2.5 py-1 text-[10px] font-semibold text-slate-600">Received</span>
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-violet-50 text-violet-600 transition-transform duration-300 group-hover:scale-105">
+                <ArrowDownTrayIcon className="h-5 w-5" />
               </div>
             </div>
           </div>

@@ -172,16 +172,16 @@ const RuleTable: React.FC<RuleTableProps> = ({
               <th className="px-4 py-3 text-left text-xs font-semibold text-slate-700 uppercase tracking-wider">
                 Rule Name
               </th>
-              <th className="px-4 py-3 text-left text-xs font-semibold text-slate-700 uppercase tracking-wider">
+              <th className="px-4 py-3 text-center text-xs font-semibold text-slate-700 uppercase tracking-wider">
                 Code
               </th>
               <th className="px-4 py-3 text-left text-xs font-semibold text-slate-700 uppercase tracking-wider">
                 Description
               </th>
-              <th className="px-4 py-3 text-left text-xs font-semibold text-slate-700 uppercase tracking-wider">
+              <th className="px-4 py-3 text-center text-xs font-semibold text-slate-700 uppercase tracking-wider">
                 MT5 Field
               </th>
-              <th className="px-4 py-3 text-left text-xs font-semibold text-slate-700 uppercase tracking-wider">
+              <th className="px-4 py-3 text-center text-xs font-semibold text-slate-700 uppercase tracking-wider">
                 Value Template
               </th>
               <th className="px-4 py-3 text-center text-xs font-semibold text-slate-700 uppercase tracking-wider">
@@ -209,7 +209,7 @@ const RuleTable: React.FC<RuleTableProps> = ({
                     </span>
                   )}
                 </td>
-                <td className="px-4 py-3 whitespace-nowrap">
+                <td className="px-4 py-3 whitespace-nowrap text-center">
                   <span className="text-xs font-mono text-slate-600 bg-blue-100 px-2 py-1 rounded">
                     {rule.rule_code}
                   </span>
@@ -219,10 +219,10 @@ const RuleTable: React.FC<RuleTableProps> = ({
                     {rule.description}
                   </div>
                 </td>
-                <td className="px-4 py-3 whitespace-nowrap">
+                <td className="px-4 py-3 whitespace-nowrap text-center">
                   <span className="text-sm text-slate-900">{rule.mt5_field}</span>
                 </td>
-                <td className="px-4 py-3 whitespace-nowrap">
+                <td className="px-4 py-3 whitespace-nowrap text-center">
                   <span className="text-xs font-mono text-slate-600 bg-white px-2 py-1 rounded">
                     {rule.mt5_value_template}
                   </span>

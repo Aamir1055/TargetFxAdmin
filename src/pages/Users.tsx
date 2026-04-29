@@ -330,7 +330,7 @@ const Users: React.FC = () => {
       {/* Compact Header with Glass Effect */}
       <PageHeaderShell>
             {/* Title Section */}
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
               <div className="flex items-center gap-3">
                 <div className="relative">
                   <div className="w-9 h-9 rounded-xl bg-blue-700 flex items-center justify-center">
@@ -353,7 +353,35 @@ const Users: React.FC = () => {
                 </div>
               </div>
 
-              <div />
+              <div className="flex flex-wrap items-center gap-2 lg:flex-nowrap">
+                <select
+                  value={selectedRole}
+                  onChange={(e) => setSelectedRole(e.target.value)}
+                  className="px-3 py-2 border border-slate-300 bg-white text-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm font-medium shadow-sm cursor-pointer"
+                >
+                  <option value="all">All Roles</option>
+                  {rolesList.map(role => (
+                    <option key={role.id} value={role.name}>{role.name}</option>
+                  ))}
+                </select>
+                <button
+                  onClick={handleRefresh}
+                  className="px-3 py-2 bg-white border border-slate-300 text-slate-700 rounded-lg transition-all duration-200 flex items-center gap-1.5 whitespace-nowrap shadow-sm font-medium text-sm group hover:bg-slate-50"
+                  title="Refresh users list"
+                >
+                  <ArrowPathIcon className="w-4 h-4 group-hover:rotate-180 transition-transform duration-300" />
+                  <span>Refresh</span>
+                </button>
+                <PermissionGate module={MODULES.USERS} action="create">
+                  <button
+                    onClick={handleCreateUser}
+                    className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-all duration-200 flex items-center gap-1.5 whitespace-nowrap shadow-sm font-semibold text-sm group"
+                  >
+                    <PlusIcon className="w-4 h-4 group-hover:rotate-90 transition-transform duration-300" />
+                    <span>Add User</span>
+                  </button>
+                </PermissionGate>
+              </div>
             </div>
 
       </PageHeaderShell>
@@ -371,138 +399,64 @@ const Users: React.FC = () => {
               users={displayUsers}
               isLoading={isLoading}
               topContent={(
-                <div className="space-y-3">
-                  <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
-                    <div className="flex-1 relative group">
-                      <input
-                        type="text"
-                        placeholder="Search users by name, email or role..."
-                        value={searchTerm}
-                        onChange={(e) => setSearchTerm(e.target.value)}
-                        className={`w-full pl-9 pr-3 py-2 border rounded-lg focus:outline-none focus:ring-2 transition-all duration-200 text-xs shadow-sm ${
-                          false 
-                            ? 'bg-blue-700/50 border-blue-600 text-white placeholder:text-slate-400 focus:ring-slate-400/50 focus:border-slate-300' 
-                            : 'bg-white border-slate-300 text-slate-900 placeholder:text-slate-400 focus:ring-slate-400/50 focus:border-slate-300'
-                        }`}
-                      />
-                      <MagnifyingGlassIcon className={`w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 transition-colors ${
-                        false ? 'text-slate-400 group-focus-within:text-slate-600' : 'text-slate-400 group-focus-within:text-slate-600'
-                      }`} />
-                      {searchTerm && (
-                        <button 
-                          onClick={() => setSearchTerm('')}
-                          className={`absolute right-2 top-1/2 transform -translate-y-1/2 transition-colors ${
-                            false ? 'text-slate-400 hover:text-slate-200' : 'text-slate-400 hover:text-slate-600'
-                          }`}
-                        >
-                          <XCircleIcon className="w-4 h-4" />
-                        </button>
-                      )}
-                    </div>
-
-                    <div className="flex flex-wrap items-center gap-2 lg:flex-nowrap">
-                      <select
-                        value={selectedRole}
-                        onChange={(e) => setSelectedRole(e.target.value)}
-                        className={`px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-400/50 focus:border-slate-300 text-xs font-medium shadow-sm cursor-pointer transition-all ${
-                          false 
-                            ? 'bg-blue-700/50 border-blue-600 text-slate-200 hover:border-blue-500' 
-                            : 'bg-white border-slate-300 text-slate-700 hover:border-slate-300'
-                        }`}
-                      >
-                        <option value="all">All Roles</option>
-                        {rolesList.map(role => (
-                          <option key={role.id} value={role.name}>{role.name}</option>
-                        ))}
-                      </select>
-
+                <div className="flex items-center justify-between gap-3">
+                  <div className="relative w-full sm:w-72">
+                    <input
+                      type="text"
+                      placeholder="Search users by name, email or role..."
+                      value={searchTerm}
+                      onChange={(e) => setSearchTerm(e.target.value)}
+                      className="w-full pl-9 pr-9 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm bg-white text-slate-900 placeholder:text-slate-400"
+                    />
+                    <MagnifyingGlassIcon className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400" />
+                    {searchTerm && (
                       <button
-                        onClick={handleRefresh}
-                        className="px-3 py-2 bg-white border border-slate-300 text-slate-700 rounded-lg transition-all duration-200 flex items-center gap-1.5 whitespace-nowrap shadow-sm font-semibold text-xs group hover:bg-white"
-                        title="Refresh users list"
+                        onClick={() => setSearchTerm('')}
+                        className="absolute right-3 top-1/2 transform -translate-y-1/2 text-slate-400 hover:text-slate-600"
                       >
-                        <ArrowPathIcon className="w-4 h-4 group-hover:rotate-180 transition-transform duration-300" />
-                        <span>Refresh</span>
+                        <XCircleIcon className="w-4 h-4" />
                       </button>
-
-                      <PermissionGate module={MODULES.USERS} action="create">
-                        <button
-                          onClick={handleCreateUser}
-                          className="px-4 py-2 bg-white border border-slate-300 text-slate-700 rounded-lg transition-all duration-200 flex items-center gap-1.5 whitespace-nowrap shadow-sm font-semibold text-xs group hover:bg-white"
-                        >
-                          <PlusIcon className="w-4 h-4 group-hover:rotate-90 transition-transform duration-300" />
-                          <span>Add User</span>
-                        </button>
-                      </PermissionGate>
-                    </div>
+                    )}
                   </div>
 
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3 ml-auto">
                     <div className="flex items-center gap-1.5">
-                      <span className={`text-xs font-medium transition-colors ${false ? 'text-slate-400' : 'text-slate-600'}`}>Show</span>
+                      <span className="text-xs text-slate-600">Show</span>
                       <select
                         value={itemsPerPage}
                         onChange={(e) => setItemsPerPage(Number(e.target.value))}
-                        className={`px-2 py-1 border rounded-md focus:outline-none focus:ring-1 focus:ring-slate-400/50 focus:border-slate-300 text-xs font-medium shadow-sm cursor-pointer transition-all ${
-                          false 
-                            ? 'bg-blue-700/50 border-blue-600 text-slate-200 hover:border-blue-500' 
-                            : 'bg-white border-slate-300 text-slate-700 hover:border-slate-300'
-                        }`}
+                        className="px-2 py-1 border border-slate-300 rounded-md focus:outline-none focus:ring-1 focus:ring-slate-400 text-xs bg-white text-slate-900"
                       >
                         {paginationOptions.map(option => (
-                          <option key={option} value={option}>
-                            {option}
-                          </option>
+                          <option key={option} value={option}>{option}</option>
                         ))}
                       </select>
-                      <span className={`text-xs font-medium transition-colors ${false ? 'text-slate-400' : 'text-slate-600'}`}>entries</span>
+                      <span className="text-xs text-slate-600">entries</span>
                     </div>
 
-                    <div className="flex items-center gap-3">
-                      <div className={`text-xs font-medium transition-colors ${false ? 'text-slate-400' : 'text-slate-600'}`}>
-                        Showing <span className={`font-semibold ${false ? 'text-slate-600' : 'text-slate-700'}`}>{totalItems === 0 ? 0 : startIndex + 1}</span> to <span className={`font-semibold ${false ? 'text-slate-600' : 'text-slate-700'}`}>{Math.min(endIndex, totalItems)}</span> of <span className={`font-semibold ${false ? 'text-slate-600' : 'text-slate-700'}`}>{totalItems}</span> results
+                    {totalPages > 1 && (
+                      <div className="flex items-center gap-1.5">
+                        <button
+                          onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
+                          disabled={currentPage === 1}
+                          className="px-2 py-1 border border-slate-300 rounded-md transition-all disabled:opacity-50 disabled:cursor-not-allowed hover:bg-white"
+                        >
+                          <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                          </svg>
+                        </button>
+                        <span className="text-xs text-slate-700">Page {currentPage} of {totalPages}</span>
+                        <button
+                          onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
+                          disabled={currentPage === totalPages}
+                          className="px-2 py-1 border border-slate-300 rounded-md transition-all disabled:opacity-50 disabled:cursor-not-allowed hover:bg-white"
+                        >
+                          <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                          </svg>
+                        </button>
                       </div>
-
-                      {totalPages > 1 && (
-                        <div className="flex items-center gap-1">
-                          <button
-                            onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
-                            disabled={currentPage === 1}
-                            className={`p-1.5 border rounded-md transition-all duration-200 disabled:opacity-40 disabled:cursor-not-allowed shadow-sm ${
-                              false 
-                                ? 'border-blue-600 hover:bg-blue-700/50 hover:border-slate-300 disabled:hover:bg-transparent disabled:hover:border-blue-600' 
-                                : 'border-slate-300 hover:bg-white hover:border-slate-300 disabled:hover:bg-transparent disabled:hover:border-slate-300'
-                            }`}
-                          >
-                            <svg className={`w-3.5 h-3.5 ${false ? 'text-slate-400' : 'text-slate-600'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                            </svg>
-                          </button>
-
-                          <div className={`px-2 py-1 border rounded-md text-xs font-semibold shadow-sm ${
-                            false 
-                              ? 'bg-blue-700/50 border-blue-600 text-slate-200' 
-                              : 'bg-white border-slate-300 text-slate-700'
-                          }`}>
-                            Page {currentPage} of {totalPages}
-                          </div>
-
-                          <button
-                            onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
-                            disabled={currentPage === totalPages}
-                            className={`p-1.5 border rounded-md transition-all duration-200 disabled:opacity-40 disabled:cursor-not-allowed shadow-sm ${
-                              false 
-                                ? 'border-blue-600 hover:bg-blue-700/50 hover:border-slate-300 disabled:hover:bg-transparent disabled:hover:border-blue-600' 
-                                : 'border-slate-300 hover:bg-white hover:border-slate-300 disabled:hover:bg-transparent disabled:hover:border-slate-300'
-                            }`}
-                          >
-                            <svg className={`w-3.5 h-3.5 ${false ? 'text-slate-400' : 'text-slate-600'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                            </svg>
-                          </button>
-                        </div>
-                      )}
-                    </div>
+                    )}
                   </div>
                 </div>
               )}

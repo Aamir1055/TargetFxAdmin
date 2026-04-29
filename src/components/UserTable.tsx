@@ -111,12 +111,12 @@ const UserTable: React.FC<UserTableProps> = ({
             }`}>
               <th 
                 onClick={() => onSort?.('username')}
-                className={`px-3 py-2 text-left text-[10px] font-bold uppercase tracking-wider transition-colors ${
+                className={`px-3 py-2 text-center text-[10px] font-bold uppercase tracking-wider transition-colors ${
                   'text-slate-700'
                 } ${onSort ? 'cursor-pointer hover:bg-opacity-50 transition-colors' : ''}`}
                 title={onSort ? 'Click to sort' : ''}
               >
-                <div className="flex items-center gap-1">
+                <div className="flex items-center justify-center gap-1">
                   <span>User</span>
                   {currentSort?.field === 'username' && (
                     <span className="text-xs text-slate-700">{currentSort.order === 'ASC' ? '↑' : '↓'}</span>
@@ -125,29 +125,29 @@ const UserTable: React.FC<UserTableProps> = ({
               </th>
               <th 
                 onClick={() => onSort?.('email')}
-                className={`px-3 py-2 text-left text-[10px] font-bold uppercase tracking-wider transition-colors ${
+                className={`px-3 py-2 text-center text-[10px] font-bold uppercase tracking-wider transition-colors ${
                   'text-slate-700'
                 } ${onSort ? 'cursor-pointer hover:bg-opacity-50 transition-colors' : ''}`}
                 title={onSort ? 'Click to sort' : ''}
               >
-                <div className="flex items-center gap-1">
+                <div className="flex items-center justify-center gap-1">
                   <span>Email</span>
                   {currentSort?.field === 'email' && (
                     <span className="text-xs text-slate-700">{currentSort.order === 'ASC' ? '↑' : '↓'}</span>
                   )}
                 </div>
               </th>
-              <th className={`px-3 py-2 text-left text-[10px] font-bold uppercase tracking-wider ${
+              <th className={`px-3 py-2 text-center text-[10px] font-bold uppercase tracking-wider ${
                 'text-slate-700'
               }`}>Roles</th>
               <th 
                 onClick={() => onSort?.('is_active')}
-                className={`px-3 py-2 text-left text-[10px] font-bold uppercase tracking-wider transition-colors ${
+                className={`px-3 py-2 text-center text-[10px] font-bold uppercase tracking-wider transition-colors ${
                   'text-slate-700'
                 } ${onSort ? 'cursor-pointer hover:bg-opacity-50 transition-colors' : ''}`}
                 title={onSort ? 'Click to sort' : ''}
               >
-                <div className="flex items-center gap-1">
+                <div className="flex items-center justify-center gap-1">
                   <span>Status</span>
                   {currentSort?.field === 'is_active' && (
                     <span className="text-xs text-slate-700">{currentSort.order === 'ASC' ? '↑' : '↓'}</span>
@@ -156,19 +156,19 @@ const UserTable: React.FC<UserTableProps> = ({
               </th>
               <th 
                 onClick={() => onSort?.('created_at')}
-                className={`px-3 py-2 text-left text-[10px] font-bold uppercase tracking-wider transition-colors ${
+                className={`px-3 py-2 text-center text-[10px] font-bold uppercase tracking-wider transition-colors ${
                   'text-slate-700'
                 } ${onSort ? 'cursor-pointer hover:bg-opacity-50 transition-colors' : ''}`}
                 title={onSort ? 'Click to sort' : ''}
               >
-                <div className="flex items-center gap-1">
+                <div className="flex items-center justify-center gap-1">
                   <span>Created</span>
                   {currentSort?.field === 'created_at' && (
                     <span className="text-xs text-slate-700">{currentSort.order === 'ASC' ? '↑' : '↓'}</span>
                   )}
                 </div>
               </th>
-              <th className={`px-3 py-2 text-right text-[10px] font-bold uppercase tracking-wider ${
+              <th className={`px-3 py-2 text-center text-[10px] font-bold uppercase tracking-wider ${
                 'text-slate-700'
               }`}>Actions</th>
             </tr>
@@ -180,19 +180,17 @@ const UserTable: React.FC<UserTableProps> = ({
           }`}>
             {users.map((user) => (
               <tr key={user.id} className="group">
-                <td className="px-3 py-2 whitespace-nowrap">
-                  <div className="flex items-center gap-2">
-                    <div>
-                      <div className="text-xs font-semibold text-slate-800">{user.username}</div>
-                      <div className="text-[10px] text-slate-500">@{user.username.toLowerCase().replace(/\s+/g, '')}</div>
-                    </div>
+                <td className="px-3 py-2 whitespace-nowrap text-center">
+                  <div className="flex flex-col items-center">
+                    <div className="text-xs font-semibold text-slate-800">{user.username}</div>
+                    <div className="text-[10px] text-slate-500">@{user.username.toLowerCase().replace(/\s+/g, '')}</div>
                   </div>
                 </td>
-                <td className="px-3 py-2 whitespace-nowrap">
+                <td className="px-3 py-2 whitespace-nowrap text-center">
                   <div className="text-xs font-medium text-slate-700">{user.email}</div>
                 </td>
-                <td className="px-3 py-2 whitespace-nowrap">
-                  <div className="flex gap-1 flex-wrap max-w-xs">
+                <td className="px-3 py-2 whitespace-nowrap text-center">
+                  <div className="flex gap-1 flex-wrap max-w-xs justify-center">
                     {user.roles.slice(0, 2).map((role) => (
                       <span
                         key={role.id}
@@ -216,7 +214,7 @@ const UserTable: React.FC<UserTableProps> = ({
                     )}
                   </div>
                 </td>
-                <td className="px-3 py-2 whitespace-nowrap">
+                <td className="px-3 py-2 whitespace-nowrap text-center">
                   <PermissionGate 
                     module={MODULES.USERS} 
                     action="edit"
@@ -241,16 +239,16 @@ const UserTable: React.FC<UserTableProps> = ({
                     </label>
                   </PermissionGate>
                 </td>
-                <td className="px-3 py-2 whitespace-nowrap">
-                  <div className="flex items-center gap-1">
+                <td className="px-3 py-2 whitespace-nowrap text-center">
+                  <div className="flex items-center justify-center gap-1">
                     <svg className="w-3 h-3 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
                     </svg>
                     <span className="text-xs text-slate-600 font-medium">{formatDate(user.created_at)}</span>
                   </div>
                 </td>
-                <td className="px-3 py-2 whitespace-nowrap text-right">
-                  <div className="flex items-center justify-end gap-1">
+                <td className="px-3 py-2 whitespace-nowrap text-center">
+                  <div className="flex items-center justify-center gap-1">
                     <PermissionGate module={MODULES.USERS} action="edit">
                       <button 
                         onClick={() => onEdit(user)}
@@ -282,53 +280,6 @@ const UserTable: React.FC<UserTableProps> = ({
         </div>
       </div>
 
-      {/* Pagination */}
-      {pagination && pagination.pages > 1 && (
-        <div className="px-4 py-3 border-t border-slate-300">
-          <div className="flex items-center justify-between">
-            <div className="text-sm text-slate-600">
-              Showing <span className="font-medium">{((currentPage - 1) * pagination.limit) + 1}</span> to{' '}
-              <span className="font-medium">{Math.min(currentPage * pagination.limit, pagination.total)}</span> of{' '}
-              <span className="font-medium">{pagination.total}</span> results
-            </div>
-            <div className="flex items-center space-x-1">
-              <button
-                onClick={() => onPageChange(currentPage - 1)}
-                disabled={currentPage === 1}
-                className="px-3 py-1.5 text-sm border border-slate-300 rounded-lg hover:bg-white transition-all duration-200 font-medium text-slate-600 disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                Previous
-              </button>
-              
-              {/* Page Numbers */}
-              {Array.from({ length: Math.min(5, pagination.pages) }, (_, i) => {
-                const page = i + 1
-                return (
-                  <button
-                    key={page}
-                    onClick={() => onPageChange(page)}
-                    className={`px-3 py-1.5 text-sm rounded-lg font-medium transition-all duration-200 ${
-                      currentPage === page
-                        ? 'bg-blue-700 text-white'
-                        : 'border border-slate-300 hover:bg-white text-slate-600'
-                    }`}
-                  >
-                    {page}
-                  </button>
-                )
-              })}
-              
-              <button
-                onClick={() => onPageChange(currentPage + 1)}
-                disabled={currentPage === pagination.pages}
-                className="px-3 py-1.5 text-sm border border-slate-300 rounded-lg hover:bg-white transition-all duration-200 font-medium text-slate-600 disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                Next
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </>
   )
 }

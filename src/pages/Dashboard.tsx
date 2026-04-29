@@ -10,7 +10,10 @@ import {
   ArrowDownIcon,
   UserPlusIcon,
   PencilSquareIcon,
-  ExclamationTriangleIcon
+  ExclamationTriangleIcon,
+  BuildingOffice2Icon,
+  RectangleGroupIcon,
+  CheckBadgeIcon
 } from '@heroicons/react/24/outline'
 import { HeartIcon } from '@heroicons/react/24/solid'
 import { ServerIcon } from '@heroicons/react/24/outline'
@@ -88,36 +91,36 @@ const Dashboard: React.FC = () => {
       value: '1,247',
       change: '+12.5%',
       trend: 'up',
-      icon: UsersIcon,
-      bgColor: 'bg-white',
-      iconColor: 'text-slate-600'
+      icon: BuildingOffice2Icon,
+      bgColor: 'bg-blue-50',
+      iconColor: 'text-blue-600'
     },
     {
       title: 'Active Users',
       value: '3,892',
       change: '+8.2%',
       trend: 'up',
-      icon: UserGroupIcon,
-      bgColor: 'bg-white',
-      iconColor: 'text-slate-600'
+      icon: UsersIcon,
+      bgColor: 'bg-emerald-50',
+      iconColor: 'text-emerald-600'
     },
     {
       title: 'Total Groups',
       value: '156',
       change: '-2.1%',
       trend: 'down',
-      icon: ShieldCheckIcon,
-      bgColor: 'bg-white',
-      iconColor: 'text-slate-600'
+      icon: RectangleGroupIcon,
+      bgColor: 'bg-violet-50',
+      iconColor: 'text-violet-600'
     },
     {
       title: 'System Health',
       value: '98.5%',
       change: 'All systems operational',
       trend: 'up',
-      icon: ServerIcon,
-      bgColor: 'bg-white',
-      iconColor: 'text-slate-600'
+      icon: CheckBadgeIcon,
+      bgColor: 'bg-amber-50',
+      iconColor: 'text-amber-600'
     }
   ]
 
@@ -173,7 +176,6 @@ const Dashboard: React.FC = () => {
               <div className="w-9 h-9 rounded-xl bg-blue-700 flex items-center justify-center">
                 <ChartBarIcon className="w-5 h-5 text-white" />
               </div>
-              <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-yellow-500 border-2 border-white rounded-full"></div>
             </div>
             <div>
               <h1 className="text-lg font-bold bg-gradient-to-r from-blue-900 to-blue-700 bg-clip-text text-transparent">
@@ -208,16 +210,16 @@ const Dashboard: React.FC = () => {
                       <p className="text-2xl font-bold text-slate-900">{stat.value}</p>
                       <div className="flex items-center mt-2">
                         {stat.trend === 'up' && stat.title !== 'System Health' ? (
-                          <ArrowUpIcon className="w-4 h-4 text-yellow-500 mr-1" />
+                          <ArrowUpIcon className="w-4 h-4 text-green-600 mr-1" />
                         ) : stat.trend === 'down' ? (
                           <ArrowDownIcon className="w-4 h-4 text-red-500 mr-1" />
                         ) : stat.title === 'System Health' ? (
-                          <div className="w-2 h-2 bg-yellow-500 rounded-full mr-2 animate-pulse"></div>
+                          <div className="w-2 h-2 bg-green-600 rounded-full mr-2 animate-pulse"></div>
                         ) : null}
                         <span className={`text-xs font-semibold ${
-                          stat.trend === 'up' ? 'text-yellow-500' : 
+                          stat.trend === 'up' ? 'text-green-600' : 
                           stat.trend === 'down' ? 'text-red-500' : 
-                          'text-yellow-500'
+                          'text-green-600'
                         }`}>
                           {stat.change}
                         </span>

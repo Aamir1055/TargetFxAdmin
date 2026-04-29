@@ -185,22 +185,49 @@ const Rules: React.FC = () => {
     <div className="min-h-screen bg-white font-sans">
       {/* Header */}
       <PageHeaderShell>
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-              <div className="flex items-center space-x-4">
-                <div className="w-10 h-10 rounded-xl bg-blue-700 flex items-center justify-center">
+            <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
+              <div className="flex items-center gap-3">
+                <div className="w-9 h-9 rounded-xl bg-blue-700 flex items-center justify-center">
                   <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                   </svg>
                 </div>
                 <div>
-                  <h1 className="text-xl font-bold text-slate-900">Rule Definitions</h1>
-                  <p className="text-sm text-slate-500">
+                  <h1 className="text-lg font-bold bg-gradient-to-r from-blue-900 to-blue-700 bg-clip-text text-transparent">Rule Definitions</h1>
+                  <p className="text-xs font-medium text-slate-500">
                     Manage trading rules and MT5 configurations ({totalCount} rules)
                   </p>
                 </div>
               </div>
 
-              <div />
+              <div className="flex flex-wrap items-center gap-2 lg:flex-nowrap">
+                <label className="flex items-center gap-2 px-3 py-2 text-sm text-slate-700 bg-white border border-slate-300 rounded-lg cursor-pointer transition-colors whitespace-nowrap shadow-sm hover:bg-slate-50">
+                  <input
+                    type="checkbox"
+                    checked={showActiveOnly}
+                    onChange={(e) => setShowActiveOnly(e.target.checked)}
+                    className="h-4 w-4 rounded border-slate-300 text-blue-600 focus:ring-2 focus:ring-blue-500/30"
+                  />
+                  <span>Active Only</span>
+                </label>
+                <button
+                  onClick={handleRefresh}
+                  disabled={isLoading}
+                  className="px-3 py-2 bg-white border border-slate-300 text-slate-700 rounded-lg transition-all duration-200 flex items-center gap-1.5 whitespace-nowrap shadow-sm font-medium text-sm group hover:bg-slate-50 disabled:opacity-50"
+                >
+                  <ArrowPathIcon className="w-4 h-4 group-hover:rotate-180 transition-transform duration-300" />
+                  <span>Refresh</span>
+                </button>
+                <PermissionGate module={MODULES.RULES} action="create">
+                  <button
+                    onClick={handleCreateRule}
+                    className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-all duration-200 flex items-center gap-1.5 whitespace-nowrap shadow-sm font-semibold text-sm group"
+                  >
+                    <PlusIcon className="w-4 h-4 group-hover:rotate-90 transition-transform duration-300" />
+                    <span>Create Rule</span>
+                  </button>
+                </PermissionGate>
+              </div>
             </div>
       </PageHeaderShell>
 
@@ -212,36 +239,6 @@ const Rules: React.FC = () => {
           onEdit={handleEditRule}
           onDelete={handleDeleteRule}
           onToggleStatus={handleToggleStatus}
-          topContent={
-            <div className="flex w-full flex-wrap items-center justify-end gap-2">
-              <label className="flex items-center gap-2 px-3 py-2 text-sm text-slate-700 bg-white border border-slate-300 rounded-lg hover:bg-white cursor-pointer transition-colors whitespace-nowrap">
-                <input
-                  type="checkbox"
-                  checked={showActiveOnly}
-                  onChange={(e) => setShowActiveOnly(e.target.checked)}
-                  className="h-4 w-4 rounded border-slate-300 text-slate-700 focus:ring-2 focus:ring-slate-400/20"
-                />
-                <span>Active Only</span>
-              </label>
-              <button
-                onClick={handleRefresh}
-                disabled={isLoading}
-                className="px-4 py-2 bg-white border border-slate-300 text-slate-700 rounded-lg transition-all duration-200 flex items-center gap-1.5 shadow-sm font-semibold text-xs group disabled:opacity-50 whitespace-nowrap hover:bg-white"
-              >
-                <ArrowPathIcon className="w-4 h-4 group-hover:rotate-180 transition-transform duration-300" />
-                <span>Refresh</span>
-              </button>
-              <PermissionGate module={MODULES.RULES} action="create">
-                <button
-                  onClick={handleCreateRule}
-                  className="px-4 py-2 bg-white border border-slate-300 text-slate-700 rounded-lg transition-all duration-200 flex items-center gap-1.5 shadow-sm font-semibold text-xs group whitespace-nowrap hover:bg-white"
-                >
-                  <PlusIcon className="w-4 h-4 group-hover:rotate-90 transition-transform duration-300" />
-                  <span>Create Rule</span>
-                </button>
-              </PermissionGate>
-            </div>
-          }
         />
       </main>
 

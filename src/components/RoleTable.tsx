@@ -110,14 +110,14 @@ const RoleTable: React.FC<RoleTableProps> = ({
             <tr>
               <th 
                 onClick={() => handleSort('name')}
-                className={`px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider cursor-pointer transition-colors ${
+                className={`px-4 py-3 text-center text-xs font-semibold uppercase tracking-wider cursor-pointer transition-colors ${
                   false 
                     ? 'text-slate-300 hover:bg-blue-600/50' 
                     : 'text-slate-500 hover:bg-slate-50'
                 }`}
                 title="Click to sort"
               >
-                <div className="flex items-center space-x-1">
+                <div className="flex items-center justify-center space-x-1">
                   <span>Role</span>
                   {sortField === 'name' && (
                     <span className="text-slate-700">{sortOrder === 'ASC' ? '↑' : '↓'}</span>
@@ -126,14 +126,14 @@ const RoleTable: React.FC<RoleTableProps> = ({
               </th>
               <th 
                 onClick={() => handleSort('description')}
-                className={`px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider cursor-pointer transition-colors ${
+                className={`px-4 py-3 text-center text-xs font-semibold uppercase tracking-wider cursor-pointer transition-colors ${
                   false 
                     ? 'text-slate-300 hover:bg-blue-600/50' 
                     : 'text-slate-500 hover:bg-slate-50'
                 }`}
                 title="Click to sort"
               >
-                <div className="flex items-center space-x-1">
+                <div className="flex items-center justify-center space-x-1">
                   <span>Description</span>
                   {sortField === 'description' && (
                     <span className="text-slate-700">{sortOrder === 'ASC' ? '↑' : '↓'}</span>
@@ -142,24 +142,24 @@ const RoleTable: React.FC<RoleTableProps> = ({
               </th>
               <th 
                 onClick={() => handleSort('permissions')}
-                className={`px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider cursor-pointer transition-colors ${
+                className={`px-4 py-3 text-center text-xs font-semibold uppercase tracking-wider cursor-pointer transition-colors ${
                   false 
                     ? 'text-slate-300 hover:bg-blue-600/50' 
                     : 'text-slate-500 hover:bg-slate-50'
                 }`}
                 title="Click to sort"
               >
-                <div className="flex items-center space-x-1">
+                <div className="flex items-center justify-center space-x-1">
                   <span>Permissions</span>
                   {sortField === 'permissions' && (
                     <span className="text-slate-700">{sortOrder === 'ASC' ? '↑' : '↓'}</span>
                   )}
                 </div>
               </th>
-              <th className={`px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider ${
+              <th className={`px-4 py-3 text-center text-xs font-semibold uppercase tracking-wider ${
                 'text-slate-500'
               }`}>Status</th>
-              <th className={`px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider ${
+              <th className={`px-4 py-3 text-center text-xs font-semibold uppercase tracking-wider ${
                 'text-slate-500'
               }`}>Actions</th>
             </tr>
@@ -169,29 +169,29 @@ const RoleTable: React.FC<RoleTableProps> = ({
               <tr key={role.id} className={`transition-colors duration-150 ${
                 false ? 'hover:bg-blue-700/50' : 'hover:bg-white'
               }`}>
-                <td className="px-4 py-3">
-                  <div className="flex items-center space-x-3">
+                <td className="px-4 py-3 text-center">
+                  <div className="flex items-center justify-center space-x-3">
                     {getRoleIcon(role.name)}
                     <div>
                       <p className="text-sm font-medium text-slate-900">{role.name}</p>
                     </div>
                   </div>
                 </td>
-                <td className="px-4 py-3">
+                <td className="px-4 py-3 text-center">
                   <p className="text-sm text-slate-700">{role.description || 'No description provided'}</p>
                 </td>
-                <td className="px-4 py-3">
+                <td className="px-4 py-3 text-center">
                   <span className="px-2.5 py-1 bg-blue-100 text-slate-700 rounded-full text-xs font-medium">
                     {role.permissions?.length || 0} permissions
                   </span>
                 </td>
-                <td className="px-4 py-3">
+                <td className="px-4 py-3 text-center">
                   <span className="px-2.5 py-1 bg-blue-100 text-slate-700 rounded-full text-xs font-medium border border-slate-300">
                     Active
                   </span>
                 </td>
-                <td className="px-4 py-3">
-                  <div className="flex items-center space-x-1">
+                <td className="px-4 py-3 text-center">
+                  <div className="flex items-center justify-center space-x-1">
                     <PermissionGate module={MODULES.ROLES} action="edit">
                       <button 
                         onClick={() => onEdit(role)}

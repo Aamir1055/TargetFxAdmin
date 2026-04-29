@@ -228,7 +228,7 @@ const AuditLogs: React.FC = () => {
     }`}>
       {/* Compact Header with Glass Effect */}
       <PageHeaderShell>
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
               <div className="flex items-center gap-3">
                 <div className="relative">
                   <div className="w-9 h-9 rounded-xl bg-blue-700 flex items-center justify-center">
@@ -251,7 +251,52 @@ const AuditLogs: React.FC = () => {
                 </div>
               </div>
 
-              <div />
+              <div className="flex flex-wrap items-center gap-2 lg:flex-nowrap">
+                <button
+                  onClick={() => setShowFilters(!showFilters)}
+                  className="px-3 py-2 bg-white border border-slate-300 text-slate-700 rounded-lg transition-all duration-200 flex items-center gap-1.5 whitespace-nowrap shadow-sm font-medium text-sm group hover:bg-slate-50"
+                >
+                  <FunnelIcon className="w-4 h-4" />
+                  <span>Filters</span>
+                </button>
+                <div className="relative">
+                  <button
+                    onClick={() => {
+                      const dropdown = document.getElementById('export-dropdown')
+                      dropdown?.classList.toggle('hidden')
+                    }}
+                    className="px-3 py-2 bg-white border border-slate-300 text-slate-700 rounded-lg transition-all duration-200 flex items-center gap-1.5 whitespace-nowrap shadow-sm font-medium text-sm group hover:bg-slate-50"
+                  >
+                    <ArrowDownTrayIcon className="w-4 h-4" />
+                    <span>Export</span>
+                  </button>
+                  <div
+                    id="export-dropdown"
+                    className="hidden absolute right-0 mt-2 w-48 rounded-lg shadow-lg border z-10 bg-white border-slate-300"
+                  >
+                    <button
+                      onClick={() => handleExport('csv')}
+                      className="block w-full text-left px-4 py-2 first:rounded-t-lg transition-colors hover:bg-slate-50 text-slate-900"
+                    >
+                      Export as CSV
+                    </button>
+                    <button
+                      onClick={() => handleExport('json')}
+                      className="block w-full text-left px-4 py-2 last:rounded-b-lg transition-colors hover:bg-slate-50 text-slate-900"
+                    >
+                      Export as JSON
+                    </button>
+                  </div>
+                </div>
+                <button
+                  onClick={handleRefresh}
+                  className="px-3 py-2 bg-white border border-slate-300 text-slate-700 rounded-lg transition-all duration-200 flex items-center gap-1.5 whitespace-nowrap shadow-sm font-medium text-sm group hover:bg-slate-50"
+                  title="Refresh audit logs"
+                >
+                  <ArrowPathIcon className="w-4 h-4 group-hover:rotate-180 transition-transform duration-300" />
+                  <span>Refresh</span>
+                </button>
+              </div>
             </div>
       </PageHeaderShell>
 
@@ -269,61 +314,59 @@ const AuditLogs: React.FC = () => {
             currentSort={{ field: sortField, order: sortOrder }}
             topContent={
               <div className="flex flex-col gap-3">
-                <div className="flex flex-wrap items-center gap-2">
-                  <div className="relative flex-1 min-w-[220px]">
+                <div className="flex items-center justify-between gap-3">
+                  <div className="relative w-full sm:w-72">
                     <input
                       type="text"
                       placeholder="Search logs..."
                       value={searchTerm}
                       onChange={(e) => setSearchTerm(e.target.value)}
-                      className="w-full pl-9 pr-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-400 text-sm bg-white text-slate-900 placeholder-slate-400"
+                      className="w-full pl-9 pr-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm bg-white text-slate-900 placeholder-slate-400"
                     />
                     <MagnifyingGlassIcon className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400" />
                   </div>
-                  <button
-                    onClick={() => setShowFilters(!showFilters)}
-                    className="px-3 py-2 rounded-lg flex items-center gap-2 transition-all shadow-sm text-xs font-semibold whitespace-nowrap bg-white border border-slate-300 text-slate-700 hover:bg-white"
-                  >
-                    <FunnelIcon className="w-4 h-4" />
-                    <span>Filters</span>
-                  </button>
-                  <div className="relative">
-                    <button
-                      className="px-4 py-2 bg-white border border-slate-300 text-slate-700 rounded-lg transition-all duration-200 flex items-center gap-1.5 shadow-sm font-semibold text-xs whitespace-nowrap hover:bg-white"
-                      onClick={() => {
-                        const dropdown = document.getElementById('export-dropdown')
-                        dropdown?.classList.toggle('hidden')
-                      }}
-                    >
-                      <ArrowDownTrayIcon className="w-4 h-4" />
-                      <span>Export</span>
-                    </button>
-                    <div
-                      id="export-dropdown"
-                      className="hidden absolute right-0 mt-2 w-48 rounded-lg shadow-lg border z-10 bg-white border-slate-300"
-                    >
-                      <button
-                        onClick={() => handleExport('csv')}
-                        className="block w-full text-left px-4 py-2 first:rounded-t-lg transition-colors hover:bg-white text-slate-900"
+
+                  <div className="flex items-center gap-3 ml-auto">
+                    <div className="flex items-center gap-1.5">
+                      <span className="text-xs text-slate-600">Show</span>
+                      <select
+                        value={filters.limit}
+                        onChange={(e) => {
+                          setFilters({ ...filters, limit: Number(e.target.value), page: 1 })
+                          setCurrentPage(1)
+                        }}
+                        className="px-2 py-1 border border-slate-300 rounded-md focus:outline-none focus:ring-1 focus:ring-slate-400 bg-white text-xs text-slate-900"
                       >
-                        Export as CSV
-                      </button>
-                      <button
-                        onClick={() => handleExport('json')}
-                        className="block w-full text-left px-4 py-2 last:rounded-b-lg transition-colors hover:bg-white text-slate-900"
-                      >
-                        Export as JSON
-                      </button>
+                        {paginationOptions.map(option => (
+                          <option key={option} value={option}>{option}</option>
+                        ))}
+                      </select>
+                      <span className="text-xs text-slate-600">entries</span>
                     </div>
+                    {pagination && Math.ceil((pagination.total_items || 0) / (filters.limit || 50)) > 1 && (
+                      <div className="flex items-center gap-1.5">
+                        <button
+                          onClick={() => handlePageChange(currentPage - 1)}
+                          disabled={currentPage === 1}
+                          className="px-2 py-1 border border-slate-300 rounded-md hover:bg-white transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                        >
+                          <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                          </svg>
+                        </button>
+                        <span className="text-xs text-slate-700">Page {currentPage} of {Math.ceil((pagination.total_items || 0) / (filters.limit || 50))}</span>
+                        <button
+                          onClick={() => handlePageChange(currentPage + 1)}
+                          disabled={currentPage === Math.ceil((pagination.total_items || 0) / (filters.limit || 50))}
+                          className="px-2 py-1 border border-slate-300 rounded-md hover:bg-white transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                        >
+                          <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                          </svg>
+                        </button>
+                      </div>
+                    )}
                   </div>
-                  <button
-                    onClick={handleRefresh}
-                    className="px-3 py-2 bg-white border border-slate-300 text-slate-700 rounded-lg transition-all duration-200 flex items-center gap-1.5 shadow-sm font-semibold text-xs group whitespace-nowrap hover:bg-white"
-                    title="Refresh audit logs"
-                  >
-                    <ArrowPathIcon className="w-4 h-4 group-hover:rotate-180 transition-transform duration-300" />
-                    <span>Refresh</span>
-                  </button>
                 </div>
 
                 {showFilters && (
@@ -384,13 +427,13 @@ const AuditLogs: React.FC = () => {
                     <div className="mt-3 flex items-center gap-2">
                       <button
                         onClick={applyFilters}
-                        className="px-4 py-1.5 text-xs bg-white border border-slate-300 text-slate-700 rounded-lg transition-all hover:bg-white"
+                        className="px-4 py-1.5 text-xs bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-all"
                       >
                         Apply Filters
                       </button>
                       <button
                         onClick={resetFilters}
-                        className="px-4 py-1.5 text-xs rounded-lg transition-colors flex items-center gap-1.5 shadow-md bg-blue-100 text-slate-700 hover:bg-blue-200"
+                        className="px-4 py-1.5 text-xs rounded-lg transition-colors flex items-center gap-1.5 shadow-sm bg-white border border-slate-300 text-slate-700 hover:bg-slate-50"
                       >
                         <XMarkIcon className="w-3.5 h-3.5" />
                         <span>Reset</span>
@@ -398,53 +441,6 @@ const AuditLogs: React.FC = () => {
                     </div>
                   </motion.div>
                 )}
-
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center space-x-1.5">
-                    <span className="text-xs text-slate-600">Show</span>
-                    <select
-                      value={filters.limit}
-                      onChange={(e) => {
-                        setFilters({ ...filters, limit: Number(e.target.value), page: 1 })
-                        setCurrentPage(1)
-                      }}
-                      className="px-2 py-1 border border-slate-300 rounded-md focus:outline-none focus:ring-1 focus:ring-slate-400 bg-white text-xs"
-                    >
-                      {paginationOptions.map(option => (
-                        <option key={option} value={option}>{option}</option>
-                      ))}
-                    </select>
-                    <span className="text-xs text-slate-600">entries</span>
-                  </div>
-                  <div className="text-xs text-slate-700">
-                    {searchTerm
-                      ? `Showing ${logs.length} filtered result${logs.length !== 1 ? 's' : ''} (from ${pagination?.total_items || 0} total)`
-                      : `Showing ${logs.length === 0 ? 0 : ((currentPage - 1) * (filters.limit || 50)) + 1} to ${Math.min(currentPage * (filters.limit || 50), pagination?.total_items || 0)} of ${pagination?.total_items || 0} results`}
-                  </div>
-                  {pagination && Math.ceil((pagination.total_items || 0) / (filters.limit || 50)) > 1 && (
-                    <div className="flex items-center space-x-1.5">
-                      <button
-                        onClick={() => handlePageChange(currentPage - 1)}
-                        disabled={currentPage === 1}
-                        className="px-2 py-1 border border-slate-300 rounded-md hover:bg-white transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
-                      >
-                        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                        </svg>
-                      </button>
-                      <span className="text-xs text-slate-700">Page {currentPage} of {Math.ceil((pagination.total_items || 0) / (filters.limit || 50))}</span>
-                      <button
-                        onClick={() => handlePageChange(currentPage + 1)}
-                        disabled={currentPage === Math.ceil((pagination.total_items || 0) / (filters.limit || 50))}
-                        className="px-2 py-1 border border-slate-300 rounded-md hover:bg-white transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
-                      >
-                        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                        </svg>
-                      </button>
-                    </div>
-                  )}
-                </div>
               </div>
             }
           />
