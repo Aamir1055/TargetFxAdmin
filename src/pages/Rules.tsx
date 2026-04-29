@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useQuery, useMutation, useQueryClient } from 'react-query'
-import { PlusIcon, ArrowPathIcon } from '@heroicons/react/24/outline'
+import { PlusIcon, ArrowPathIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline'
 import { ruleService } from '../services/ruleService'
 import { Rule, CreateRuleData, UpdateRuleData } from '../types'
 import RuleTable from '../components/RuleTable'
@@ -18,6 +18,9 @@ const Rules: React.FC = () => {
   const [showActiveOnly, setShowActiveOnly] = useState(false)
   const [accessDenied, setAccessDenied] = useState(false)
   const [apiError, setApiError] = useState<string | null>(null)
+  const [searchTerm, setSearchTerm] = useState('')
+  const [pageSize, setPageSize] = useState(10)
+  const [currentPage, setCurrentPage] = useState(1)
 
   const queryClient = useQueryClient()
 
@@ -149,8 +152,16 @@ const Rules: React.FC = () => {
     toast.success('Rules refreshed')
   }
 
-  const rules = rulesData?.rules || []
+  const allRules = rulesData?.rules || []
   const totalCount = rulesData?.count || 0
+  const filteredRules = searchTerm.trim()
+    ? allRules.filter((r: Rule) =>
+        r.rule_name?.toLowerCase().includes(searchTerm.toLowerCase())
+      )
+    : allRules
+  const totalPages = Math.max(1, Math.ceil(filteredRules.length / pageSize))
+  const safePage = Math.min(currentPage, totalPages)
+  const rules = filteredRules.slice((safePage - 1) * pageSize, safePage * pageSize)
 
   // Access Denied UI
   if (accessDenied) {
@@ -239,6 +250,64 @@ const Rules: React.FC = () => {
           onEdit={handleEditRule}
           onDelete={handleDeleteRule}
           onToggleStatus={handleToggleStatus}
+          topContent={
+            <div className="flex items-center justify-between gap-3">
+              <div className="relative w-full sm:w-72">
+                <input
+                  type="text"
+                  placeholder="Search by rule name..."
+                  value={searchTerm}
+                  onChange={(e) => {
+                    setSearchTerm(e.target.value)
+                    setCurrentPage(1)
+                  }}
+                  className="w-full pl-9 pr-4 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-300 focus:border-blue-300 text-sm bg-white text-slate-900 placeholder-slate-400"
+                />
+                <MagnifyingGlassIcon className="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400" />
+              </div>
+              <div className="flex items-center gap-3 ml-auto">
+                <div className="flex items-center gap-1.5">
+                  <span className="text-xs text-slate-600">Show</span>
+                  <select
+                    value={pageSize}
+                    onChange={(e) => {
+                      setPageSize(Number(e.target.value))
+                      setCurrentPage(1)
+                    }}
+                    className="px-2 py-1 border border-slate-300 rounded-md focus:outline-none focus:ring-1 focus:ring-slate-400 bg-white text-xs text-slate-900"
+                  >
+                    {[10, 25, 50, 100].map(option => (
+                      <option key={option} value={option}>{option}</option>
+                    ))}
+                  </select>
+                  <span className="text-xs text-slate-600">entries</span>
+                </div>
+                {totalPages > 1 && (
+                  <div className="flex items-center gap-1.5">
+                    <button
+                      onClick={() => setCurrentPage(Math.max(1, safePage - 1))}
+                      disabled={safePage === 1}
+                      className="px-2 py-1 border border-slate-300 rounded-md hover:bg-white transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                      </svg>
+                    </button>
+                    <span className="text-xs text-slate-700">Page {safePage} of {totalPages}</span>
+                    <button
+                      onClick={() => setCurrentPage(Math.min(totalPages, safePage + 1))}
+                      disabled={safePage === totalPages}
+                      className="px-2 py-1 border border-slate-300 rounded-md hover:bg-white transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </button>
+                  </div>
+                )}
+              </div>
+            </div>
+          }
         />
       </main>
 
