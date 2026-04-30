@@ -90,7 +90,7 @@ const RuleTable: React.FC<RuleTableProps> = ({
               <span
                 className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border ${
                   rule.is_active
-                    ? 'bg-blue-100 text-slate-700 border-slate-300'
+                    ? 'bg-blue-50 text-blue-700 border-slate-300'
                     : 'bg-white text-slate-400 border-slate-300'
                 }`}
               >
@@ -210,7 +210,7 @@ const RuleTable: React.FC<RuleTableProps> = ({
                   )}
                 </td>
                 <td className="px-4 py-3 whitespace-nowrap text-center">
-                  <span className="text-xs font-mono text-slate-600 bg-blue-100 px-2 py-1 rounded">
+                  <span className="text-xs font-mono text-blue-700 bg-blue-50 px-2 py-1 rounded">
                     {rule.rule_code}
                   </span>
                 </td>
@@ -228,13 +228,7 @@ const RuleTable: React.FC<RuleTableProps> = ({
                   </span>
                 </td>
                 <td className="px-4 py-3 whitespace-nowrap text-center">
-                  <span
-                    className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium border ${
-                      rule.is_active
-                        ? 'bg-blue-100 text-slate-700 border-slate-300'
-                        : 'bg-white text-slate-400 border-slate-300'
-                    }`}
-                  >
+                  <span className="px-2.5 py-1 bg-blue-50 text-blue-700 rounded-full text-xs font-medium border border-slate-200">
                     {rule.is_active ? 'Active' : 'Inactive'}
                   </span>
                 </td>
@@ -243,7 +237,7 @@ const RuleTable: React.FC<RuleTableProps> = ({
                     <PermissionGate module={MODULES.RULES} action="edit">
                       <button
                         onClick={() => onEdit(rule)}
-                        className="group/btn relative p-1.5 text-slate-400 hover:text-white rounded-lg bg-blue-100 hover:bg-blue-700 transition-all duration-200 hover:shadow-md hover:shadow-blue-500/50 hover:scale-110"
+                        className="group/btn relative p-1.5 text-blue-600 hover:text-white rounded-lg bg-blue-50 hover:bg-blue-700 transition-all duration-200 hover:shadow-md hover:shadow-blue-500/50 hover:scale-110"
                         title="Edit"
                       >
                         <svg className="w-3.5 h-3.5 transition-transform group-hover/btn:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -254,10 +248,10 @@ const RuleTable: React.FC<RuleTableProps> = ({
                     <PermissionGate module={MODULES.RULES} action="edit">
                       <button
                         onClick={() => onToggleStatus(rule)}
-                        className={`group/btn relative p-1.5 text-slate-400 hover:text-white rounded-lg bg-blue-100 transition-all duration-200 hover:shadow-md hover:scale-110 ${
+                        className={`group/btn relative hover:text-white rounded-lg bg-blue-50 p-1.5 transition-all duration-200 hover:shadow-md hover:scale-110 ${
                           rule.is_active
-                            ? 'hover:bg-gradient-to-r hover:from-orange-500 hover:to-orange-600 hover:shadow-orange-500/50'
-                            : 'hover:bg-gradient-to-r hover:from-green-500 hover:to-green-600 hover:shadow-green-500/50'
+                            ? 'text-orange-500 hover:bg-gradient-to-r hover:from-orange-500 hover:to-orange-600 hover:shadow-orange-500/50'
+                            : 'text-green-600 hover:bg-gradient-to-r hover:from-green-500 hover:to-green-600 hover:shadow-green-500/50'
                         }`}
                         title={rule.is_active ? 'Deactivate' : 'Activate'}
                       >
@@ -267,7 +261,7 @@ const RuleTable: React.FC<RuleTableProps> = ({
                     <PermissionGate module={MODULES.RULES} action="delete">
                       <button
                         onClick={() => onDelete(rule.id)}
-                        className="group/btn relative p-1.5 text-slate-400 hover:text-white rounded-lg bg-blue-100 hover:bg-gradient-to-r hover:from-red-500 hover:to-red-600 transition-all duration-200 hover:shadow-md hover:shadow-red-500/50 hover:scale-110"
+                        className="group/btn relative p-1.5 text-red-500 hover:text-white rounded-lg bg-blue-50 hover:bg-gradient-to-r hover:from-red-500 hover:to-red-600 transition-all duration-200 hover:shadow-md hover:shadow-red-500/50 hover:scale-110"
                         title="Delete"
                       >
                         <svg className="w-3.5 h-3.5 transition-transform group-hover/btn:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">

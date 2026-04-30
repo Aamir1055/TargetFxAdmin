@@ -97,7 +97,7 @@ const BrokerTable: React.FC<BrokerTableProps> = ({
                           </label>
                         </PermissionGate>
                       </div>
-                      <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-slate-800">
+                      <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-50 text-blue-700">
                         @{broker.username}
                       </span>
                     </div>
@@ -259,7 +259,7 @@ const BrokerTable: React.FC<BrokerTableProps> = ({
                     </p>
                   </td>
                   <td className="px-4 py-3 text-center">
-                    <span className="px-2.5 py-1 bg-blue-100 text-slate-700 rounded-full text-xs font-medium border border-slate-300">
+                    <span className="px-2.5 py-1 bg-blue-50 text-blue-700 rounded-full text-xs font-medium border border-slate-300">
                       {getRightsDisplay(broker.id)}
                     </span>
                   </td>
@@ -268,7 +268,7 @@ const BrokerTable: React.FC<BrokerTableProps> = ({
                       <PermissionGate module={MODULES.BROKERS} action="edit">
                         <button 
                           onClick={() => onEdit(broker)}
-                          className="group/btn relative p-1.5 text-slate-400 hover:text-white rounded-lg bg-blue-100 hover:bg-blue-700 transition-all duration-200 hover:shadow-md hover:shadow-blue-500/50 hover:scale-110"
+                          className="group/btn relative p-1.5 text-blue-600 hover:text-white rounded-lg bg-blue-50 hover:bg-blue-700 transition-all duration-200 hover:shadow-md hover:shadow-blue-500/50 hover:scale-110"
                           title="Edit broker"
                         >
                           <svg className="w-3.5 h-3.5 transition-transform group-hover/btn:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -279,7 +279,7 @@ const BrokerTable: React.FC<BrokerTableProps> = ({
                       <PermissionGate module={MODULES.BROKERS} action="delete">
                         <button 
                           onClick={() => onDelete(broker.id)}
-                          className="group/btn relative p-1.5 text-slate-400 hover:text-white rounded-lg bg-blue-100 hover:bg-gradient-to-r hover:from-red-500 hover:to-red-600 transition-all duration-200 hover:shadow-md hover:shadow-red-500/50 hover:scale-110"
+                          className="group/btn relative p-1.5 text-red-500 hover:text-white rounded-lg bg-blue-50 hover:bg-gradient-to-r hover:from-red-500 hover:to-red-600 transition-all duration-200 hover:shadow-md hover:shadow-red-500/50 hover:scale-110"
                           title="Delete broker"
                         >
                           <svg className="w-3.5 h-3.5 transition-transform group-hover/btn:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -352,7 +352,7 @@ const BrokerProfiles: React.FC = () => {
                               <div className="text-xs text-slate-700">{profile.description || 'No description'}</div>
                             </td>
                             <td className="px-3 py-2 text-center">
-                              <span className="px-2 py-0.5 bg-blue-100 text-slate-700 rounded-full text-[10px] font-medium">
+                              <span className="px-2 py-0.5 bg-blue-50 text-blue-700 rounded-full text-[10px] font-medium">
                                 {profile.rightsCount}
                               </span>
                             </td>
@@ -365,7 +365,7 @@ const BrokerProfiles: React.FC = () => {
                               <div className="flex items-center justify-center gap-1">
                                 <button
                                   onClick={() => handleEditProfile(profile)}
-                                  className="group/btn relative p-1.5 text-slate-400 hover:text-white rounded-lg bg-blue-100 hover:bg-blue-700 transition-all duration-200 hover:shadow-md hover:shadow-blue-500/50 hover:scale-110"
+                                  className="group/btn relative p-1.5 text-blue-600 hover:text-white rounded-lg bg-blue-50 hover:bg-blue-700 transition-all duration-200 hover:shadow-md hover:shadow-blue-500/50 hover:scale-110"
                                   title="Edit Profile"
                                 >
                                   <svg className="w-3.5 h-3.5 transition-transform group-hover/btn:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -374,7 +374,7 @@ const BrokerProfiles: React.FC = () => {
                                 </button>
                                 <button
                                   onClick={() => handleDeleteProfile(profile.id)}
-                                  className="group/btn relative p-1.5 text-slate-400 hover:text-white rounded-lg bg-blue-100 hover:bg-gradient-to-r hover:from-red-500 hover:to-red-600 transition-all duration-200 hover:shadow-md hover:shadow-red-500/50 hover:scale-110"
+                                  className="group/btn relative p-1.5 text-red-500 hover:text-white rounded-lg bg-blue-50 hover:bg-gradient-to-r hover:from-red-500 hover:to-red-600 transition-all duration-200 hover:shadow-md hover:shadow-red-500/50 hover:scale-110"
                                   title="Delete Profile"
                                 >
                                   <svg className="w-3.5 h-3.5 transition-transform group-hover/btn:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -58,8 +58,8 @@ const RoleTable: React.FC<RoleTableProps> = ({
     else if (name.includes('viewer')) Icon = EyeIcon
     else if (name.includes('moderator')) Icon = WrenchScrewdriverIcon
     return (
-      <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center border border-slate-300">
-        <Icon className="w-4 h-4 text-slate-600" />
+      <div className="w-8 h-8 bg-blue-50 rounded-lg flex items-center justify-center border border-slate-200">
+        <Icon className="w-4 h-4 text-blue-600" />
       </div>
     )
   }
@@ -86,9 +86,9 @@ const RoleTable: React.FC<RoleTableProps> = ({
         {topContent && <div className="p-3 border-b border-slate-300">{topContent}</div>}
         <div className="p-16 text-center">
           <div className={`w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6 ${
-            'bg-blue-100'
+            'bg-blue-50'
           }`}>
-            <UserGroupIcon className="w-10 h-10 text-slate-400" />
+            <UserGroupIcon className="w-10 h-10 text-blue-400" />
           </div>
           <h3 className="text-lg font-bold mb-2 text-slate-900">No roles found</h3>
           <p className="font-medium text-slate-600">Get started by creating your first role.</p>
@@ -181,12 +181,12 @@ const RoleTable: React.FC<RoleTableProps> = ({
                   <p className="text-sm text-slate-700">{role.description || 'No description provided'}</p>
                 </td>
                 <td className="px-4 py-3 text-center">
-                  <span className="px-2.5 py-1 bg-blue-100 text-slate-700 rounded-full text-xs font-medium">
+                  <span className="px-2.5 py-1 bg-blue-50 text-blue-700 rounded-full text-xs font-medium">
                     {role.permissions?.length || 0} permissions
                   </span>
                 </td>
                 <td className="px-4 py-3 text-center">
-                  <span className="px-2.5 py-1 bg-blue-100 text-slate-700 rounded-full text-xs font-medium border border-slate-300">
+                  <span className="px-2.5 py-1 bg-blue-50 text-blue-700 rounded-full text-xs font-medium border border-slate-200">
                     Active
                   </span>
                 </td>
@@ -195,7 +195,7 @@ const RoleTable: React.FC<RoleTableProps> = ({
                     <PermissionGate module={MODULES.ROLES} action="edit">
                       <button 
                         onClick={() => onEdit(role)}
-                        className="group/btn relative p-1.5 text-slate-400 hover:text-white rounded-lg bg-blue-100 hover:bg-blue-700 transition-all duration-200 hover:shadow-md hover:shadow-blue-500/50 hover:scale-110"
+                        className="group/btn relative p-1.5 text-blue-600 hover:text-white rounded-lg bg-blue-50 hover:bg-blue-700 transition-all duration-200 hover:shadow-md hover:shadow-blue-500/50 hover:scale-110"
                         title="Edit role"
                       >
                         <svg className="w-3.5 h-3.5 transition-transform group-hover/btn:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -206,7 +206,7 @@ const RoleTable: React.FC<RoleTableProps> = ({
                     <PermissionGate module={MODULES.ROLES} action="delete">
                       <button 
                         onClick={() => onDelete(role.id)}
-                        className="group/btn relative p-1.5 text-slate-400 hover:text-white rounded-lg bg-blue-100 hover:bg-gradient-to-r hover:from-red-500 hover:to-red-600 transition-all duration-200 hover:shadow-md hover:shadow-red-500/50 hover:scale-110"
+                        className="group/btn relative p-1.5 text-red-500 hover:text-white rounded-lg bg-blue-50 hover:bg-gradient-to-r hover:from-red-500 hover:to-red-600 transition-all duration-200 hover:shadow-md hover:shadow-red-500/50 hover:scale-110"
                         title="Delete role"
                       >
                         <svg className="w-3.5 h-3.5 transition-transform group-hover/btn:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">

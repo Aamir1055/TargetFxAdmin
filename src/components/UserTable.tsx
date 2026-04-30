@@ -201,7 +201,7 @@ const UserTable: React.FC<UserTableProps> = ({
                             ? 'bg-amber-100 text-amber-800'
                             : role.name.toLowerCase() === 'viewer'
                             ? 'bg-slate-100 text-slate-700'
-                            : 'bg-blue-100 text-blue-800'
+                            : 'bg-blue-50 text-blue-700'
                         }`}
                       >
                         {role.name}
@@ -252,7 +252,7 @@ const UserTable: React.FC<UserTableProps> = ({
                     <PermissionGate module={MODULES.USERS} action="edit">
                       <button 
                         onClick={() => onEdit(user)}
-                        className="group/btn relative p-1.5 text-slate-400 hover:text-white rounded-lg bg-blue-100 hover:bg-blue-700 transition-all duration-200 hover:shadow-md hover:shadow-blue-500/50 hover:scale-110"
+                        className="group/btn relative p-1.5 text-blue-600 hover:text-white rounded-lg bg-blue-50 hover:bg-blue-700 transition-all duration-200 hover:shadow-md hover:shadow-blue-500/50 hover:scale-110"
                         title="Edit user"
                       >
                         <svg className="w-3.5 h-3.5 transition-transform group-hover/btn:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -263,7 +263,7 @@ const UserTable: React.FC<UserTableProps> = ({
                     <PermissionGate module={MODULES.USERS} action="delete">
                       <button 
                         onClick={() => onDelete(user.id)}
-                        className="group/btn relative p-1.5 text-slate-400 hover:text-white rounded-lg bg-blue-100 hover:bg-gradient-to-r hover:from-red-500 hover:to-red-600 transition-all duration-200 hover:shadow-md hover:shadow-red-500/50 hover:scale-110"
+                        className="group/btn relative p-1.5 text-red-500 hover:text-white rounded-lg bg-blue-50 hover:bg-gradient-to-r hover:from-red-500 hover:to-red-600 transition-all duration-200 hover:shadow-md hover:shadow-red-500/50 hover:scale-110"
                         title="Delete user"
                       >
                         <svg className="w-3.5 h-3.5 transition-transform group-hover/btn:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
